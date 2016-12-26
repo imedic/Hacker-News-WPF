@@ -4,10 +4,36 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:hacker_news_wpf_client.Controls"
-             mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="300">
-    <StackPanel Orientation="Vertical">
-        <StackPanel Orientation="Horizontal">
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d">
+    <StackPanel Orientation="Vertical"
+                HorizontalAlignment="Stretch"
+                MaxWidth="900">
+        <materialDesign:Card Padding="10 20" Margin="5 2" Cursor="Hand">
+            <DockPanel>
+                <DockPanel Width="35">
+                    <TextBlock Text="{Binding Score}" 
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
+                </DockPanel>
+                <DockPanel Margin="10 0 0 0">
+                    <TextBlock Text="{Binding Title}"
+                               FontSize="16"
+                               Foreground="#0D47A1"
+                               DockPanel.Dock="Top">
+                    </TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding NumberOfComments, StringFormat='\{0\} comments'}"
+                                   FontSize="10"
+                                   DockPanel.Dock="Bottom">
+                        </TextBlock>
+                    </StackPanel>
+                </DockPanel>
+            </DockPanel>
+            
+        </materialDesign:Card>
+
+        <!--<StackPanel Orientation="Horizontal">
             <Label Content="{Binding Score}"></Label>
             <StackPanel Orientation="Vertical">
                 <Label Content="{Binding Title}"></Label>
@@ -17,6 +43,9 @@
                     <Label Content=" comments"></Label>
                 </StackPanel>
             </StackPanel>
-        </StackPanel>
+        </StackPanel>-->
     </StackPanel>
 </UserControl>
+ 
+
+ 

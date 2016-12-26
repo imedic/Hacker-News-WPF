@@ -26,7 +26,7 @@ namespace hacker_news_wpf_client.Services
             var trendingStoriesIdsJson = await DownloadItem.GetJson(_url + "topstories.json");
             var trendingStoriesIds = JsonConvert.DeserializeObject<int[]>(trendingStoriesIdsJson);
 
-            var topTwentyTrendingStoriesIds = trendingStoriesIds.Take(20);
+            var topTwentyTrendingStoriesIds = trendingStoriesIds.Take(2);
 
             var trendingStories = new List<Story>();
 
