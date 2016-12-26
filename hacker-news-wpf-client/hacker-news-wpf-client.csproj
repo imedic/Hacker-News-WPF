@@ -59,11 +59,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\StoryItemControl.xaml.cs">
+      <DependentUpon>StoryItemControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\Story.cs" />
     <Compile Include="Services\DownloadItem.cs" />
     <Compile Include="Services\NotifyClassCompletion.cs" />
     <Compile Include="Services\StoryService.cs" />
     <Compile Include="ViewModel\StoryViewModel.cs" />
+    <Page Include="Controls\StoryItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -3,21 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace hacker_news_wpf_client.Model
 {
     public class Story
     {
-        public string by { get; set; }
+        [JsonProperty(PropertyName = "by")]
+        public string By { get; set; }
 
-        public string title { get; set; }
+        [JsonProperty(PropertyName = "title")]
+        public string Title { get; set; }
 
-        public string url { get; set; }
+        [JsonProperty(PropertyName = "url")]
+        public string Url { get; set; }
 
-        public string id { get; set; }
+        [JsonProperty(PropertyName = "id")]
+        public string Id { get; set; }
 
-        public int score { get; set; }
+        [JsonProperty(PropertyName = "score")]
+        public int Score { get; set; }
 
-        public string[] kids { get; set; }
+        [JsonProperty(PropertyName = "kids")]
+        public string[] Comments { get; set; }
+
+        [JsonProperty(PropertyName = "descendants")]
+        public string NumberOfComments { get; set; }
     }
 }

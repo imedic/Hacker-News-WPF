@@ -10,10 +10,10 @@ namespace hacker_news_wpf_client.Services
         {
             using (var client = new HttpClient())
             {
-                using (var r = await client.GetAsync(new Uri(url)))
+                using (var data = await client.GetAsync(new Uri(url)))
                 {
-                    string result = await r.Content.ReadAsStringAsync();
-                    return result;
+                    var dataJson = await data.Content.ReadAsStringAsync();
+                    return dataJson;
                 }
             }
         }

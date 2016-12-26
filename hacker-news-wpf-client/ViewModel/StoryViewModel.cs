@@ -12,18 +12,14 @@ using Newtonsoft.Json;
 
 namespace hacker_news_wpf_client
 {
-    class StoryViewModel : INotifyPropertyChanged
+    class StoryViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public NotifyTaskCompletion<Story> Story { get; private set; }
+        public NotifyTaskCompletion<List<Story>> TrendingStories { get; private set; }
 
         public StoryViewModel()
         {
-            Story = new NotifyTaskCompletion<Story>(
-                StoryService.GetStory(8863));
-
-            
+            TrendingStories = new NotifyTaskCompletion<List<Story>>(
+                StoryService.GetTrendingStories());
         }
     }
 }

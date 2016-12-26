@@ -13,17 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace hacker_news_wpf_client
+namespace hacker_news_wpf_client.Controls
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for StoryItem.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class StoryItemControl : UserControl
     {
-        public MainWindow()
+        public StoryItemControl()
         {
-            this.DataContext = new StoryViewModel();
-
             InitializeComponent();
         }
     }

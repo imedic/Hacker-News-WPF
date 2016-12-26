@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using hacker_news_wpf_client.Model;
@@ -10,19 +11,31 @@ namespace hacker_news_wpf_client.Services
 {
     public class StoryService
     {
-        private static string _url = "https://hacker-news.firebaseio.com/v0/item/";
+        private static string _url = "https://hacker-news.firebaseio.com/v0/";
 
         public static async Task<Story> GetStory(int id)
         {
-            var storyJson = await DownloadItem.GetJson(_url + id + ".json");
+            var storyJson = await DownloadItem.GetJson(_url + "item/" + id + ".json");
             var story = JsonConvert.DeserializeObject<Story>(storyJson);
 
             return story;
         }
 
-        public static List<Story> GetTrendingStories()
+        public static async Task<List<Story>> GetTrendingStories()
         {
-            return new List<Story>();
+            var trendingStoriesIdsJson = await DownloadItem.GetJson(_url + "topstories.json");
+            var trendingStoriesIds = JsonConvert.DeserializeObject<int[]>(trendingStoriesIdsJson);
+
+            var topTwentyTrendingStoriesIds = trendingStoriesIds.Take(20);
+
+            var trendingStories = new List<Story>();
+
+            foreach (var id in topTwentyTrendingStoriesIds)
+            {
+                trendingStories.Add(await GetStory(id));
+            }
+
+            return trendingStories;
         }
 
 
