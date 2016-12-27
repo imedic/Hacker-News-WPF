@@ -26,7 +26,7 @@ namespace hacker_news_wpf_client.Services
             var trendingStoriesIdsJson = await DownloadItem.GetJson(_url + "topstories.json");
             var trendingStoriesIds = JsonConvert.DeserializeObject<int[]>(trendingStoriesIdsJson);
 
-            var topTwentyTrendingStoriesIds = trendingStoriesIds.Take(2);
+            var topTwentyTrendingStoriesIds = trendingStoriesIds.Take(10);
 
             var trendingStories = new List<Story>();
 
@@ -36,6 +36,24 @@ namespace hacker_news_wpf_client.Services
             }
 
             return trendingStories;
+        }
+
+        public static async Task<List<Story>> GetBestStories()
+        {
+            var bestStoriesIdsJson = await DownloadItem.GetJson(_url + "beststories.json");
+            var bestStoriesIds = JsonConvert.DeserializeObject<int[]>(bestStoriesIdsJson);
+
+            var topTwentyBestStoriesIds = bestStoriesIds.Take(10);
+
+            var bestStories = new List<Story>();
+
+            foreach (var id in topTwentyBestStoriesIds)
+            {
+                bestStories.Add(await GetStory(id));
+            }
+
+            return bestStories;
+
         }
 
 

@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="hacker_news_wpf_client.Controls.StoryListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:hacker_news_wpf_client.Controls"
+             mc:Ignorable="d">
+    <StackPanel Orientation="Vertical">
+        <Label Content="Loading..." Visibility="{Binding IsNotCompleted,
+                                Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+        <!--Results-->
+        <StackPanel Orientation="Vertical"
+                    Margin="0 20">
+            <ItemsControl ItemsSource="{Binding Result}"
+                                            Visibility="{Binding IsSuccessfullyCompleted,
+                                            Converter={StaticResource BooleanToVisibilityConverter}}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <local:StoryItemControl />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+
+        <!--Error details-->
+        <Label Content="{Binding ErrorMessage}" 
+                                Background="Red"
+                                Visibility="{Binding IsFaulted,
+                                Converter={StaticResource BooleanToVisibilityConverter}}"/>
+    </StackPanel>
+</UserControl>

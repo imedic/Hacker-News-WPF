@@ -67,15 +67,34 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BestStories.xaml.cs">
+      <DependentUpon>BestStories.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\StoryItemControl.xaml.cs">
       <DependentUpon>StoryItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StoryListControl.xaml.cs">
+      <DependentUpon>StoryListControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Story.cs" />
     <Compile Include="Services\DownloadItem.cs" />
     <Compile Include="Services\NotifyClassCompletion.cs" />
     <Compile Include="Services\StoryService.cs" />
-    <Compile Include="ViewModel\StoryViewModel.cs" />
+    <Compile Include="TrendingStories.xaml.cs">
+      <DependentUpon>TrendingStories.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\BestStoriesViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\TrendingStoriesViewModel.cs" />
+    <Page Include="BestStories.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\StoryItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\StoryListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -91,6 +110,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="TrendingStories.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\Resources.Designer.cs">

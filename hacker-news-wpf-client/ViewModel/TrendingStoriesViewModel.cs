@@ -12,11 +12,11 @@ using Newtonsoft.Json;
 
 namespace hacker_news_wpf_client
 {
-    class StoryViewModel
+    class TrendingStoriesViewModel
     {
         public NotifyTaskCompletion<List<Story>> TrendingStories { get; private set; }
 
-        public StoryViewModel()
+        public TrendingStoriesViewModel()
         {
             TrendingStories = new NotifyTaskCompletion<List<Story>>(
                 StoryService.GetTrendingStories());

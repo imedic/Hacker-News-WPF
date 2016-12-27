@@ -19,52 +19,93 @@
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </Window.Resources>
-    
-    
+
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        
+
         <Grid.RowDefinitions>
+            <RowDefinition Height="70"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
+        <DockPanel Grid.Row="0"
+                   Grid.ColumnSpan="2"
+                   Background="White">
+            <TextBlock Text="Hacker News WPF Client"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontSize="18"
+                       FontWeight="Bold"></TextBlock>
+        </DockPanel>
+
         <StackPanel Orientation="Vertical"
                     Grid.Column="0"
+                    Grid.Row="1"
                     Background="#212121">
-            
+
+            <Button Height="50" Background="#424242" BorderThickness="0">Trending</Button>
+            <Button Height="50" Background="Transparent" BorderThickness="0" BorderBrush="#424242"
+                    Click="NavigateToBestStoriesPage">
+                Best
+            </Button>
+            <Button Height="50" Background="Transparent" BorderThickness="0">New</Button>
         </StackPanel>
 
-        <StackPanel Orientation="Vertical"
-                    Grid.Column="1"
-                    Background="#424242">
-            <Label Content="Loading..." Visibility="{Binding TrendingStories.IsNotCompleted,
-                            Converter={StaticResource BooleanToVisibilityConverter}}"/>
-
-            <!--Results-->
-            <StackPanel Orientation="Vertical"
-                                Margin="0 20 0 0">
-                <ItemsControl ItemsSource="{Binding TrendingStories.Result}"
-                                        Visibility="{Binding TrendingStories.IsSuccessfullyCompleted,
-                                        Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <hackerNewsControls:StoryItemControl />
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </StackPanel>
-
-            <!--Error details-->
-            <Label Content="{Binding TrendingStories.ErrorMessage}" 
-                            Background="Red"
-                            Visibility="{Binding TrendingStories.IsFaulted,
-                            Converter={StaticResource BooleanToVisibilityConverter}}"/>
-
-        </StackPanel>
+        <ScrollViewer Grid.Column="1"
+                      Grid.Row="1"
+                      Background="#424242">
+            <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
+        </ScrollViewer>
     </Grid>
 
-    
+    <!--<StackPanel Orientation="Vertical">
+        <TabControl>
+            <TabItem Header="Trending" Name="TRENDING">
+                <StackPanel Orientation="Vertical"
+                                    Margin="0 20">
+                    <Label Content="Loading..." Visibility="{Binding TrendingStories.IsNotCompleted,
+                                Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                    <ItemsControl ItemsSource="{Binding TrendingStories.Result}"
+                                            Visibility="{Binding TrendingStories.IsSuccessfullyCompleted,
+                                            Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <hackerNewsControls:StoryItemControl />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <Label Content="{Binding TrendingStories.ErrorMessage}" 
+                                Background="Red"
+                                Visibility="{Binding TrendingStories.IsFaulted,
+                                Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Best" Name="BEST">
+                <StackPanel Orientation="Vertical"
+                                    Margin="0 20">
+                    <Label Content="Loading..." Visibility="{Binding BestStories.IsNotCompleted,
+                                Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                    <ItemsControl ItemsSource="{Binding BestStories.Result}"
+                                            Visibility="{Binding BestStories.IsSuccessfullyCompleted,
+                                            Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <hackerNewsControls:StoryItemControl />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <Label Content="{Binding BestStories.ErrorMessage}" 
+                                Background="Red"
+                                Visibility="{Binding BestStories.IsFaulted,
+                                Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </StackPanel>-->
 </Window>

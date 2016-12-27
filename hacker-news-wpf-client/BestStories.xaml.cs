@@ -17,23 +17,15 @@ using hacker_news_wpf_client.ViewModel;
 namespace hacker_news_wpf_client
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for BestStories.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class BestStories : Page
     {
-        public MainWindow()
+        public BestStories()
         {
-            //this.DataContext = new MainViewModel();
-
             InitializeComponent();
 
-            MainFrame.Navigate(new TrendingStories());
-
-        }
-
-        private void NavigateToBestStoriesPage(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Navigate(new BestStories());
+            this.DataContext = new BestStoriesViewModel();
         }
     }
 }
