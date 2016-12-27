@@ -12,20 +12,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using hacker_news_wpf_client.ViewModel;
+using hacker_news_wpf_client.ViewModels;
 
 namespace hacker_news_wpf_client
 {
     /// <summary>
-    /// Interaction logic for BestStories.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class BestStories : Page
+    public partial class ShellView : Window
     {
-        public BestStories()
+        public ShellView()
         {
             InitializeComponent();
-
-            this.DataContext = new BestStoriesViewModel();
         }
     }
 }

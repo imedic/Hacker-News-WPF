@@ -67,29 +67,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BestStories.xaml.cs">
-      <DependentUpon>BestStories.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\StoryItemControl.xaml.cs">
       <DependentUpon>StoryItemControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\StoryListControl.xaml.cs">
       <DependentUpon>StoryListControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helper Classes\ObservableObject.cs" />
+    <Compile Include="Helper Classes\RelayCommand.cs" />
+    <Compile Include="Intefaces\IPageViewModel.cs" />
     <Compile Include="Model\Story.cs" />
     <Compile Include="Services\DownloadItem.cs" />
-    <Compile Include="Services\NotifyClassCompletion.cs" />
+    <Compile Include="Helper Classes\NotifyClassCompletion.cs" />
     <Compile Include="Services\StoryService.cs" />
-    <Compile Include="TrendingStories.xaml.cs">
-      <DependentUpon>TrendingStories.xaml</DependentUpon>
+    <Compile Include="ViewModels\BestStoriesViewModel.cs" />
+    <Compile Include="ViewModels\ShellViewModel.cs" />
+    <Compile Include="ViewModels\TrendingStoriesViewModel.cs" />
+    <Compile Include="Views\BestStoriesView.xaml.cs">
+      <DependentUpon>BestStoriesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\BestStoriesViewModel.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\TrendingStoriesViewModel.cs" />
-    <Page Include="BestStories.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="Views\TrendingStoriesView.xaml.cs">
+      <DependentUpon>TrendingStoriesView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Controls\StoryItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -98,7 +97,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="ShellView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -106,11 +105,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="ShellView.xaml.cs">
+      <DependentUpon>ShellView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="TrendingStories.xaml">
+    <Page Include="Views\BestStoriesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TrendingStoriesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

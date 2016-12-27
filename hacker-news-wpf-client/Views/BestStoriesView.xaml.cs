@@ -12,28 +12,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using hacker_news_wpf_client.ViewModel;
+using hacker_news_wpf_client.ViewModels;
 
-namespace hacker_news_wpf_client
+namespace hacker_news_wpf_client.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for BestStoriesView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class BestStoriesView : UserControl
     {
-        public MainWindow()
+        public BestStoriesView()
         {
-            //this.DataContext = new MainViewModel();
-
             InitializeComponent();
 
-            MainFrame.Navigate(new TrendingStories());
-
-        }
-
-        private void NavigateToBestStoriesPage(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Navigate(new BestStories());
+            this.DataContext = new BestStoriesViewModel();
         }
     }
 }

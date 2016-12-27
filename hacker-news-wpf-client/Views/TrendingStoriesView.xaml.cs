@@ -12,15 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using hacker_news_wpf_client.ViewModels;
 
-namespace hacker_news_wpf_client
+namespace hacker_news_wpf_client.Views
 {
     /// <summary>
-    /// Interaction logic for TrendingStories.xaml
+    /// Interaction logic for TrendingStoriesView.xaml
     /// </summary>
-    public partial class TrendingStories : Page
+    public partial class TrendingStoriesView : UserControl
     {
-        public TrendingStories()
+        public TrendingStoriesView()
         {
             InitializeComponent();
 
