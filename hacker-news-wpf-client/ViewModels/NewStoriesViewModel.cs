@@ -10,16 +10,16 @@ using hacker_news_wpf_client.Services;
 
 namespace hacker_news_wpf_client.ViewModels
 {
-    class BestStoriesViewModel : ObservableObject, IPageViewModel
+    class NewStoriesViewModel : ObservableObject, IPageViewModel
     {
-        public string Name => "Best";
+        public string Name => "New";
 
-        public NotifyTaskCompletion<List<Story>> BestStories { get; private set; }
+        public NotifyTaskCompletion<List<Story>> NewStories { get; private set; }
 
-        public BestStoriesViewModel()
+        public NewStoriesViewModel()
         {
-            BestStories = new NotifyTaskCompletion<List<Story>>(
-                StoryService.GetBestStoriesFromCacheOrApi());
+            NewStories = new NotifyTaskCompletion<List<Story>>(
+                StoryService.GetNewStoriesFromCacheOrApi());
         }
     }
 }

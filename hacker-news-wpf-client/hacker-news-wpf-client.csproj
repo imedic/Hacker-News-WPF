@@ -49,6 +49,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -77,14 +79,18 @@
     <Compile Include="Helper Classes\RelayCommand.cs" />
     <Compile Include="Intefaces\IPageViewModel.cs" />
     <Compile Include="Model\Story.cs" />
-    <Compile Include="Services\DownloadItem.cs" />
+    <Compile Include="Helper Classes\DownloadItem.cs" />
     <Compile Include="Helper Classes\NotifyClassCompletion.cs" />
     <Compile Include="Services\StoryService.cs" />
     <Compile Include="ViewModels\BestStoriesViewModel.cs" />
+    <Compile Include="ViewModels\NewStoriesViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\TrendingStoriesViewModel.cs" />
     <Compile Include="Views\BestStoriesView.xaml.cs">
       <DependentUpon>BestStoriesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewStoriesView.xaml.cs">
+      <DependentUpon>NewStoriesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TrendingStoriesView.xaml.cs">
       <DependentUpon>TrendingStoriesView.xaml</DependentUpon>
@@ -110,6 +116,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\BestStoriesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewStoriesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

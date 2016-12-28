@@ -7,6 +7,7 @@
         xmlns:vm="clr-namespace:hacker_news_wpf_client.ViewModels"
         xmlns:v="clr-namespace:hacker_news_wpf_client.Views"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:intefaces="clr-namespace:hacker_news_wpf_client.Intefaces.hacker_news_wpf_client.Intefaces"
         mc:Ignorable="d"
         Title="Hacker News" Height="350" Width="525"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -26,6 +27,10 @@
 
         <DataTemplate DataType="{x:Type vm:BestStoriesViewModel}">
             <v:BestStoriesView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:NewStoriesViewModel}">
+            <v:NewStoriesView />
         </DataTemplate>
     </Window.Resources>
 
@@ -65,13 +70,19 @@
                     Grid.Row="1"
                     Background="#212121">
 
-            <ItemsControl ItemsSource="{Binding PageViewModels}">
+            <ItemsControl ItemsSource="{Binding PageViewModels}"
+                          Margin="15">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Button Content="{Binding Name}"
                                 Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
                                 CommandParameter="{Binding }"
-                                Margin="2,5"/>
+                                Margin="0 5"
+                                Height="50"
+                                Background="#2196F3"
+                                BorderBrush="#2196F3">
+
+                        </Button>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -80,7 +91,10 @@
         <ScrollViewer Grid.Column="1"
                       Grid.Row="1"
                       Background="#424242">
-            <ContentControl Content="{Binding CurrentPageViewModel}" />
+            <StackPanel Orientation="Vertical"
+                        Margin="0 20 0 0">
+                <ContentControl Content="{Binding CurrentPageViewModel}" />
+            </StackPanel>
         </ScrollViewer>
     </Grid>
 </Window>

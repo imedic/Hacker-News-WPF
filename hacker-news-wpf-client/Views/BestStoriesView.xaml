@@ -7,8 +7,11 @@
              xmlns:controls="clr-namespace:hacker_news_wpf_client.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel Orientation="Vertical">
-        <TextBlock HorizontalAlignment="Center">Best stories</TextBlock>
+    <Grid>
+        <TextBlock HorizontalAlignment="Center"
+                   FontSize="18"
+                   FontWeight="Bold"
+                   Foreground="White">Best stories</TextBlock>
         <controls:StoryListControl DataContext="{Binding BestStories}"/>
-    </StackPanel>
+    </Grid>
 </UserControl>

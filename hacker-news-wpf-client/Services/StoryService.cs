@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.Caching;
 using System.Text;
 using System.Threading.Tasks;
+using hacker_news_wpf_client.Helper_Classes;
 using hacker_news_wpf_client.Model;
 using Newtonsoft.Json;
 
@@ -21,7 +24,24 @@ namespace hacker_news_wpf_client.Services
             return story;
         }
 
-        public static async Task<List<Story>> GetTrendingStories()
+        public static async Task<List<Story>> GetTrendingStoriesFromCacheOrApi()
+        {
+            ObjectCache cache = MemoryCache.Default;
+            List<Story> trendingStories = cache["trendingStories"] as List<Story>;
+
+            if (trendingStories == null)
+            {
+                CacheItemPolicy cacheItemPolicy = new CacheItemPolicy();
+
+                trendingStories = await GetTrendingStoriesFromApi();
+
+                cache.Add("trendingStories", trendingStories, cacheItemPolicy);
+                
+            }
+            return trendingStories;           
+        }
+
+        private static async Task<List<Story>> GetTrendingStoriesFromApi()
         {
             var trendingStoriesIdsJson = await DownloadItem.GetJson(_url + "topstories.json");
             var trendingStoriesIds = JsonConvert.DeserializeObject<int[]>(trendingStoriesIdsJson);
@@ -38,7 +58,24 @@ namespace hacker_news_wpf_client.Services
             return trendingStories;
         }
 
-        public static async Task<List<Story>> GetBestStories()
+        public static async Task<List<Story>> GetBestStoriesFromCacheOrApi()
+        {
+            ObjectCache cache = MemoryCache.Default;
+            List<Story> bestStories = cache["bestStories"] as List<Story>;
+
+            if (bestStories == null)
+            {
+                CacheItemPolicy cacheItemPolicy = new CacheItemPolicy();
+
+                bestStories = await GetBestStoriesFromApi();
+
+                cache.Add("bestStories", bestStories, cacheItemPolicy);
+
+            }
+            return bestStories;
+        }
+
+        public static async Task<List<Story>> GetBestStoriesFromApi()
         {
             var bestStoriesIdsJson = await DownloadItem.GetJson(_url + "beststories.json");
             var bestStoriesIds = JsonConvert.DeserializeObject<int[]>(bestStoriesIdsJson);
@@ -56,6 +93,40 @@ namespace hacker_news_wpf_client.Services
 
         }
 
+        public static async Task<List<Story>> GetNewStoriesFromCacheOrApi()
+        {
+            ObjectCache cache = MemoryCache.Default;
+            List<Story> newStories = cache["newStories"] as List<Story>;
 
+            if (newStories == null)
+            {
+                CacheItemPolicy cacheItemPolicy = new CacheItemPolicy();
+
+                newStories = await GetNewStoriesFromApi();
+
+                cache.Add("newStories", newStories, cacheItemPolicy);
+
+            }
+            return newStories;
+
+        }
+
+        public static async Task<List<Story>> GetNewStoriesFromApi()
+        {
+            var bestStoriesIdsJson = await DownloadItem.GetJson(_url + "newstories.json");
+            var newStoriesIds = JsonConvert.DeserializeObject<int[]>(bestStoriesIdsJson);
+
+            var topTwentyNewStoriesIds = newStoriesIds.Take(10);
+
+            var newStories = new List<Story>();
+
+            foreach (var id in topTwentyNewStoriesIds)
+            {
+                newStories.Add(await GetStory(id));
+            }
+
+            return newStories;
+
+        }
     }
 }

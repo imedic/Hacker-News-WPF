@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="hacker_news_wpf_client.Views.TrendingStoriesView"
+﻿<UserControl x:Class="hacker_news_wpf_client.Views.NewStoriesView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -11,8 +11,7 @@
         <TextBlock HorizontalAlignment="Center"
                    FontSize="18"
                    FontWeight="Bold"
-                   Foreground="White">Trending Stories</TextBlock>
-
-        <controls:StoryListControl DataContext="{Binding TrendingStories}"/>
+                   Foreground="White">New stories</TextBlock>
+        <controls:StoryListControl DataContext="{Binding NewStories}"/>
     </Grid>
 </UserControl>

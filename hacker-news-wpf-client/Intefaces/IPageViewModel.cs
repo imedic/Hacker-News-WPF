@@ -1,6 +1,6 @@
 ﻿namespace hacker_news_wpf_client.Intefaces
 {
-    namespace SimpleMVVMExample
+    namespace hacker_news_wpf_client.Intefaces
     {
         public interface IPageViewModel
         {

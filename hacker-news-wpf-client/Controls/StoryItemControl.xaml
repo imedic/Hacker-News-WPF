@@ -30,20 +30,8 @@
                     </StackPanel>
                 </DockPanel>
             </DockPanel>
-            
-        </materialDesign:Card>
 
-        <!--<StackPanel Orientation="Horizontal">
-            <Label Content="{Binding Score}"></Label>
-            <StackPanel Orientation="Vertical">
-                <Label Content="{Binding Title}"></Label>
-                <Label Content="{Binding Url}"></Label>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="{Binding NumberOfComments}"></Label>
-                    <Label Content=" comments"></Label>
-                </StackPanel>
-            </StackPanel>
-        </StackPanel>-->
+        </materialDesign:Card>
     </StackPanel>
 </UserControl>
  

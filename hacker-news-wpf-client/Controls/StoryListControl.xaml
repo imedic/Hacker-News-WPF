@@ -4,10 +4,28 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:hacker_news_wpf_client.Controls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d">
-    <StackPanel Orientation="Vertical">
-        <Label Content="Loading..." Visibility="{Binding IsNotCompleted,
-                                Converter={StaticResource BooleanToVisibilityConverter}}"/>
+    <StackPanel Orientation="Vertical"
+                Margin="0 20 0 0">
+        <StackPanel Orientation="Vertical"
+                    Visibility="{Binding IsNotCompleted,
+                                Converter={StaticResource BooleanToVisibilityConverter}, 
+                                FallbackValue=Collapsed}">
+            <materialDesign:Card UniformCornerRadius="14" Padding="4"
+                                VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                Margin="0 12 0 5">
+                <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" 
+                         Value="0"
+                         IsIndeterminate="True"/>
+            </materialDesign:Card>
+            <Label Content="Loading"
+                   HorizontalAlignment="Center"
+                   Foreground="White"></Label>
+        </StackPanel>
+        <!--<Label Content="Loading..." Visibility="{Binding IsNotCompleted,
+                                Converter={StaticResource BooleanToVisibilityConverter}, 
+                                FallbackValue=Collapsed}"/>-->
 
         <!--Results-->
         <StackPanel Orientation="Vertical"
@@ -27,6 +45,7 @@
         <Label Content="{Binding ErrorMessage}" 
                                 Background="Red"
                                 Visibility="{Binding IsFaulted,
-                                Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                Converter={StaticResource BooleanToVisibilityConverter},
+                                FallbackValue=Collapsed}"/>
     </StackPanel>
 </UserControl>

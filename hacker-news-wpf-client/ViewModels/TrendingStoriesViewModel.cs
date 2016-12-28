@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using hacker_news_wpf_client.Helper_Classes;
-using hacker_news_wpf_client.Intefaces.SimpleMVVMExample;
+using hacker_news_wpf_client.Intefaces.hacker_news_wpf_client.Intefaces;
 using hacker_news_wpf_client.Model;
 using hacker_news_wpf_client.Services;
 using Newtonsoft.Json;
@@ -23,7 +23,7 @@ namespace hacker_news_wpf_client.ViewModels
         public TrendingStoriesViewModel()
         {
             TrendingStories = new NotifyTaskCompletion<List<Story>>(
-                StoryService.GetTrendingStories());
+                StoryService.GetTrendingStoriesFromCacheOrApi());
         }
     }
 }
