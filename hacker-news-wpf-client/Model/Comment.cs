@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace hacker_news_wpf_client.Model
 {
     public class Comment
     {
-        string by;
+        public int Id { get; set; }
 
-        string text;
+        public string Author { get; set; }
+
+        public string Text { get; set; }
+
+        [JsonProperty(PropertyName = "children")]
+        public List<Comment> Comments { get; set; }
     }
 }

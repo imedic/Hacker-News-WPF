@@ -6,7 +6,6 @@ using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using hacker_news_wpf_client.Commands;
 using hacker_news_wpf_client.Helper_Classes;
 using hacker_news_wpf_client.Intefaces.hacker_news_wpf_client.Intefaces;
 using hacker_news_wpf_client.Model;
@@ -21,14 +20,10 @@ namespace hacker_news_wpf_client.ViewModels
 
         public NotifyTaskCompletion<List<Story>> TrendingStories { get; private set; }
 
-        public OpenLinkCommand OpenLinkCommand;
-
         public TrendingStoriesViewModel()
         {
             TrendingStories = new NotifyTaskCompletion<List<Story>>(
                 StoryService.GetTrendingStoriesFromCacheOrApi());
-
-            OpenLinkCommand = new OpenLinkCommand();
         }
     }
 }

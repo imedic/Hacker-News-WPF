@@ -15,11 +15,11 @@ namespace hacker_news_wpf_client.Services
 {
     public class StoryService
     {
-        private static string _url = "https://hacker-news.firebaseio.com/v0/";
+        //private static string _url = "https://hacker-news.firebaseio.com/v0/";
 
         public static async Task<Story> GetStory(int id)
         {
-            var storyJson = await DownloadItem.GetJson(_url + "item/" + id + ".json");
+            var storyJson = await DownloadItem.GetJson("http://hn.algolia.com/api/v1/items/8863");
             var story = JsonConvert.DeserializeObject<Story>(storyJson);
 
             return story;

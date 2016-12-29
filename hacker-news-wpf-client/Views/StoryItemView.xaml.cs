@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,24 +12,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using hacker_news_wpf_client.ViewModels;
 
-namespace hacker_news_wpf_client.Controls
+namespace hacker_news_wpf_client.Views
 {
     /// <summary>
-    /// Interaction logic for StoryItem.xaml
+    /// Interaction logic for StoryItemView.xaml
     /// </summary>
-    public partial class StoryItemControl : UserControl
+    public partial class StoryItemView : UserControl
     {
-        public StoryItemControl()
+        public StoryItemView()
         {
             InitializeComponent();
-        }
 
-        private void OpenLink(object sender, RoutedEventArgs e)
-        {
-            var url = ((Button) sender).Tag as string;
-
-            if(url != null) Process.Start(url);
+            this.DataContext = new StoryItemViewModel();
         }
     }
 }

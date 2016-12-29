@@ -25,6 +25,7 @@ namespace hacker_news_wpf_client.ViewModels
             PageViewModels.Add(new TrendingStoriesViewModel());
             PageViewModels.Add(new BestStoriesViewModel());
             PageViewModels.Add(new NewStoriesViewModel());
+            PageViewModels.Add(new StoryItemViewModel());
 
             // Set starting page
             CurrentPageViewModel = PageViewModels[0];

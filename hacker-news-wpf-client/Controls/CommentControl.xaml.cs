@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,20 +16,13 @@ using System.Windows.Shapes;
 namespace hacker_news_wpf_client.Controls
 {
     /// <summary>
-    /// Interaction logic for StoryItem.xaml
+    /// Interaction logic for CommentControl.xaml
     /// </summary>
-    public partial class StoryItemControl : UserControl
+    public partial class CommentControl : UserControl
     {
-        public StoryItemControl()
+        public CommentControl()
         {
             InitializeComponent();
-        }
-
-        private void OpenLink(object sender, RoutedEventArgs e)
-        {
-            var url = ((Button) sender).Tag as string;
-
-            if(url != null) Process.Start(url);
         }
     }
 }

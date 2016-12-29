@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HtmlToXamlConverter, Version=1.0.5727.24510, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlToXamlConverter.1.0.5727.24510\lib\net45\HtmlToXamlConverter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
       <Private>True</Private>
@@ -69,7 +73,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\OpenLinkCommand.cs" />
+    <Compile Include="Controls\CommentControl.xaml.cs">
+      <DependentUpon>CommentControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\StoryItemControl.xaml.cs">
       <DependentUpon>StoryItemControl.xaml</DependentUpon>
     </Compile>
@@ -77,9 +83,12 @@
       <DependentUpon>StoryListControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\NullToVIsibilityConverter.cs" />
+    <Compile Include="Helper Classes\BrowserBehaviour.cs" />
+    <Compile Include="Helper Classes\HtmlRichTextBoxBehavior.cs" />
     <Compile Include="Helper Classes\ObservableObject.cs" />
     <Compile Include="Helper Classes\RelayCommand.cs" />
     <Compile Include="Intefaces\IPageViewModel.cs" />
+    <Compile Include="Model\Comment.cs" />
     <Compile Include="Model\Story.cs" />
     <Compile Include="Helper Classes\DownloadItem.cs" />
     <Compile Include="Helper Classes\NotifyClassCompletion.cs" />
@@ -95,9 +104,16 @@
     <Compile Include="Views\NewStoriesView.xaml.cs">
       <DependentUpon>NewStoriesView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\StoryItemView.xaml.cs">
+      <DependentUpon>StoryItemView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TrendingStoriesView.xaml.cs">
       <DependentUpon>TrendingStoriesView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\CommentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\StoryItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -123,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NewStoriesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StoryItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
