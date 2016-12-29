@@ -7,7 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d">
     <StackPanel Orientation="Vertical"
-                Margin="0 20 0 0">
+                Margin="0 30 0 0">
         <StackPanel Orientation="Vertical"
                     Visibility="{Binding IsNotCompleted,
                                 Converter={StaticResource BooleanToVisibilityConverter}, 
@@ -21,7 +21,7 @@
             </materialDesign:Card>
             <Label Content="Loading"
                    HorizontalAlignment="Center"
-                   Foreground="White"></Label>
+                   Foreground="#212121"></Label>
         </StackPanel>
         <!--<Label Content="Loading..." Visibility="{Binding IsNotCompleted,
                                 Converter={StaticResource BooleanToVisibilityConverter}, 

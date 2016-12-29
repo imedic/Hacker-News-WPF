@@ -9,7 +9,7 @@ namespace hacker_news_wpf_client.Model
 {
     public class Story
     {
-        [JsonProperty(PropertyName = "by")]
+        [JsonProperty(PropertyName = "author")]
         public string By { get; set; }
 
         [JsonProperty(PropertyName = "title")]
@@ -21,13 +21,13 @@ namespace hacker_news_wpf_client.Model
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
 
-        [JsonProperty(PropertyName = "score")]
+        [JsonProperty(PropertyName = "points")]
         public int Score { get; set; }
 
         [JsonProperty(PropertyName = "kids")]
         public string[] Comments { get; set; }
 
-        [JsonProperty(PropertyName = "descendants")]
+        [JsonProperty(PropertyName = "num_comments")]
         public string NumberOfComments { get; set; }
     }
 }

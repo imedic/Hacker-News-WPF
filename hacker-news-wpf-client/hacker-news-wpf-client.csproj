@@ -69,12 +69,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\OpenLinkCommand.cs" />
     <Compile Include="Controls\StoryItemControl.xaml.cs">
       <DependentUpon>StoryItemControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\StoryListControl.xaml.cs">
       <DependentUpon>StoryListControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\NullToVIsibilityConverter.cs" />
     <Compile Include="Helper Classes\ObservableObject.cs" />
     <Compile Include="Helper Classes\RelayCommand.cs" />
     <Compile Include="Intefaces\IPageViewModel.cs" />
@@ -85,6 +87,7 @@
     <Compile Include="ViewModels\BestStoriesViewModel.cs" />
     <Compile Include="ViewModels\NewStoriesViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
+    <Compile Include="ViewModels\StoryItemViewModel.cs" />
     <Compile Include="ViewModels\TrendingStoriesViewModel.cs" />
     <Compile Include="Views\BestStoriesView.xaml.cs">
       <DependentUpon>BestStoriesView.xaml</DependentUpon>

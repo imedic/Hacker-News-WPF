@@ -34,69 +34,71 @@
         </DataTemplate>
     </Window.Resources>
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
+    <DockPanel>
+        <DockPanel materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                    DockPanel.Dock="Top"
+                    Background="#F4511E"
+                    VerticalAlignment="Center"                  
+                    Height="100">
+            <materialDesign:PackIcon Kind="Hackernews" 
+                                     Width="30" Height="30" 
+                                     VerticalAlignment="Center"
+                                     Foreground="White"
+                                     Margin="30 0 10 0"/>
+            <TextBlock HorizontalAlignment="Center" 
+                       VerticalAlignment="Center" 
+                       FontSize="22"
+                       Margin="0 0 30 0"
+                       Foreground="White">
+                Hacker News
+            </TextBlock>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="70"></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal"
+                        VerticalAlignment="Center">
+                <ItemsControl ItemsSource="{Binding PageViewModels}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
 
-        <materialDesign:Card Grid.Row="0"
-                   Grid.ColumnSpan="2"
-                    Height="70">
-            <DockPanel HorizontalAlignment="Left"
-                       Width="300">
-                <materialDesign:Card Background="#212121"
-                                 Height="50"
-                                 Width="200"
-                                 HorizontalAlignment="Center"
-                                 VerticalAlignment="Center">
-                    <TextBlock Text="Hacker News"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       FontSize="18"
-                       FontWeight="Bold"
-                       Foreground="White"/>
-                </materialDesign:Card>
-            </DockPanel>
-        </materialDesign:Card>
-
-        <StackPanel Orientation="Vertical"
-                    Grid.Column="0"
-                    Grid.Row="1"
-                    Background="#212121">
-
-            <ItemsControl ItemsSource="{Binding PageViewModels}"
-                          Margin="15">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button Content="{Binding Name}"
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Content="{Binding Name}"
                                 Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
                                 CommandParameter="{Binding }"
-                                Margin="0 5"
-                                Height="50"
-                                Background="#2196F3"
-                                BorderBrush="#2196F3">
+                                Background="Transparent"
+                                BorderBrush="white"
+                                Foreground="White"
+                                VerticalAlignment="Center"
+                                Margin="10 0"
+                                MinWidth="80"
+                                materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                materialDesign:RippleAssist.IsDisabled="True">
+                                <Button.Style>
+                                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="BorderBrush" Value="White"></Setter>
+                                                <Setter Property="Background" Value="#FF5722"></Setter>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </DockPanel>
 
-                        </Button>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </StackPanel>
-
-        <ScrollViewer Grid.Column="1"
-                      Grid.Row="1"
-                      Background="#424242">
+        <ScrollViewer>
             <StackPanel Orientation="Vertical"
-                        Margin="0 20 0 0">
+                        Margin="0 30 0 0">
                 <ContentControl Content="{Binding CurrentPageViewModel}" />
             </StackPanel>
         </ScrollViewer>
-    </Grid>
+    </DockPanel>
 </Window>
 
 

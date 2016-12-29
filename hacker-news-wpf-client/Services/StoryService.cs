@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using hacker_news_wpf_client.Helper_Classes;
 using hacker_news_wpf_client.Model;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace hacker_news_wpf_client.Services
 {
@@ -43,16 +44,30 @@ namespace hacker_news_wpf_client.Services
 
         private static async Task<List<Story>> GetTrendingStoriesFromApi()
         {
-            var trendingStoriesIdsJson = await DownloadItem.GetJson(_url + "topstories.json");
-            var trendingStoriesIds = JsonConvert.DeserializeObject<int[]>(trendingStoriesIdsJson);
+            //var trendingStoriesIdsJson = await DownloadItem.GetJson(_url + "topstories.json");
 
-            var topTwentyTrendingStoriesIds = trendingStoriesIds.Take(10);
+            var trendingStoriesIdsJson = await DownloadItem.GetJson("http://hn.algolia.com/api/v1/search?tags=front_page");
+
+            JObject stories = JObject.Parse(trendingStoriesIdsJson);
+
+            IList<JToken> results = stories["hits"].Children().ToList();
+
+            
+
+            //var trendingStoriesIds = JsonConvert.DeserializeObject<int[]>(trendingStoriesIdsJson);
+
+            //var topTwentyTrendingStoriesIds = trendingStoriesIds.Take(10);
 
             var trendingStories = new List<Story>();
 
-            foreach (var id in topTwentyTrendingStoriesIds)
+            //foreach (var id in topTwentyTrendingStoriesIds)
+            //{
+            //    trendingStories.Add(await GetStory(id));
+            //}
+
+            foreach (JToken result in results)
             {
-                trendingStories.Add(await GetStory(id));
+                trendingStories.Add(JsonConvert.DeserializeObject<Story>(result.ToString()));
             }
 
             return trendingStories;
@@ -77,17 +92,29 @@ namespace hacker_news_wpf_client.Services
 
         public static async Task<List<Story>> GetBestStoriesFromApi()
         {
-            var bestStoriesIdsJson = await DownloadItem.GetJson(_url + "beststories.json");
-            var bestStoriesIds = JsonConvert.DeserializeObject<int[]>(bestStoriesIdsJson);
+            //var bestStoriesIdsJson = await DownloadItem.GetJson(_url + "beststories.json");
+            //var bestStoriesIds = JsonConvert.DeserializeObject<int[]>(bestStoriesIdsJson);
 
-            var topTwentyBestStoriesIds = bestStoriesIds.Take(10);
+            var bestStoriesIdsJson = await DownloadItem.GetJson("http://hn.algolia.com/api/v1/search?tags=story");
+
+            JObject stories = JObject.Parse(bestStoriesIdsJson);
+
+            IList<JToken> results = stories["hits"].Children().ToList();
+
+
+            //var topTwentyBestStoriesIds = bestStoriesIds.Take(10);
 
             var bestStories = new List<Story>();
 
-            foreach (var id in topTwentyBestStoriesIds)
+            foreach (JToken result in results)
             {
-                bestStories.Add(await GetStory(id));
+                bestStories.Add(JsonConvert.DeserializeObject<Story>(result.ToString()));
             }
+
+            //foreach (var id in topTwentyBestStoriesIds)
+            //{
+            //    bestStories.Add(await GetStory(id));
+            //}
 
             return bestStories;
 
@@ -113,17 +140,29 @@ namespace hacker_news_wpf_client.Services
 
         public static async Task<List<Story>> GetNewStoriesFromApi()
         {
-            var bestStoriesIdsJson = await DownloadItem.GetJson(_url + "newstories.json");
-            var newStoriesIds = JsonConvert.DeserializeObject<int[]>(bestStoriesIdsJson);
+            //var newStoriesIdsJson = await DownloadItem.GetJson(_url + "newstories.json");
+            var newStoriesIdsJson = await DownloadItem.GetJson("http://hn.algolia.com/api/v1/search_by_date?tags=story");
 
-            var topTwentyNewStoriesIds = newStoriesIds.Take(10);
+            JObject stories = JObject.Parse(newStoriesIdsJson);
+
+            IList<JToken> results = stories["hits"].Children().ToList();
+
+            //var newStoriesIds = JsonConvert.DeserializeObject<int[]>(newStoriesIdsJson);
+
+            //var topTwentyNewStoriesIds = newStoriesIds.Take(10);
 
             var newStories = new List<Story>();
 
-            foreach (var id in topTwentyNewStoriesIds)
+            foreach (JToken result in results)
             {
-                newStories.Add(await GetStory(id));
+                newStories.Add(JsonConvert.DeserializeObject<Story>(result.ToString()));
             }
+
+
+            //foreach (var id in topTwentyNewStoriesIds)
+            //{
+            //    newStories.Add(await GetStory(id));
+            //}
 
             return newStories;
 

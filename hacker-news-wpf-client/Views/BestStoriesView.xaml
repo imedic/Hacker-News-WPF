@@ -9,9 +9,9 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <TextBlock HorizontalAlignment="Center"
-                   FontSize="18"
+                   FontSize="24"
                    FontWeight="Bold"
-                   Foreground="White">Best stories</TextBlock>
+                   Foreground="#212121">Best stories</TextBlock>
         <controls:StoryListControl DataContext="{Binding BestStories}"/>
     </Grid>
 </UserControl>

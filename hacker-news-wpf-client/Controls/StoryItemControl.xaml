@@ -5,31 +5,68 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:hacker_news_wpf_client.Controls"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converters="clr-namespace:hacker_news_wpf_client.Converters"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d">
+    
+    <UserControl.Resources>
+        <converters:NullToVIsibilityConverter x:Key="NullToVIsibilityConverter"></converters:NullToVIsibilityConverter>
+    </UserControl.Resources>
     <StackPanel Orientation="Vertical"
                 HorizontalAlignment="Stretch"
                 MaxWidth="900">
-        <materialDesign:Card Padding="10 20" Margin="5 2" Cursor="Hand">
-            <DockPanel>
-                <DockPanel Width="35">
-                    <TextBlock Text="{Binding Score}" 
+        <materialDesign:Card Padding="10 20" Margin="5 2" MinHeight="80">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Border BorderBrush="#FF000000" 
+                        BorderThickness="0" 
+                        CornerRadius="8,8,8,8" 
+                        Background="#FF5722" 
+                        Grid.Column="0"
+                        Width="50"
+                        Height="35">
+                    <DockPanel>
+                        <TextBlock Text="{Binding Score}" 
                            VerticalAlignment="Center"
-                           HorizontalAlignment="Center"/>
-                </DockPanel>
-                <DockPanel Margin="10 0 0 0">
+                           HorizontalAlignment="Center"
+                            Foreground="White"/>          
+                    </DockPanel>
+                </Border>
+                <DockPanel Margin="10 0 0 0"
+                           DockPanel.Dock="Left"
+                           Grid.Column="1">
                     <TextBlock Text="{Binding Title}"
                                FontSize="16"
                                Foreground="#0D47A1"
-                               DockPanel.Dock="Top">
+                               DockPanel.Dock="Top"
+                               TextWrapping="Wrap">
                     </TextBlock>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
                         <TextBlock Text="{Binding NumberOfComments, StringFormat='\{0\} comments'}"
-                                   FontSize="10"
-                                   DockPanel.Dock="Bottom">
+                                   FontSize="10">
                         </TextBlock>
+
                     </StackPanel>
                 </DockPanel>
-            </DockPanel>
+                <StackPanel DockPanel.Dock="Right"
+                            Width="30"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Grid.Column="2">
+                    <Button Tag="{Binding Url}"
+                            Click="OpenLink"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            ToolTip="Open link in browser"
+                            Padding="0"
+                            Visibility="{Binding Url, Converter={StaticResource NullToVIsibilityConverter}}">
+                        <materialDesign:PackIcon Kind="Launch" Height="24" Width="24" Foreground="#FF7043" />
+                    </Button>
+                </StackPanel>
+            </Grid>
 
         </materialDesign:Card>
     </StackPanel>
