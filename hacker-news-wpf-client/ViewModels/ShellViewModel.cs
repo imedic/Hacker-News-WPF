@@ -4,8 +4,8 @@ using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 using hacker_news_wpf_client;
-using hacker_news_wpf_client.Helper_Classes;
 using hacker_news_wpf_client.Intefaces.hacker_news_wpf_client.Intefaces;
+using hacker_news_wpf_client.Utility;
 using hacker_news_wpf_client.ViewModels;
 
 namespace hacker_news_wpf_client.ViewModels

@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Threading.Tasks;
 
-namespace hacker_news_wpf_client.Helper_Classes
+namespace hacker_news_wpf_client.Utility
 {
     public sealed class NotifyTaskCompletion<TResult> : INotifyPropertyChanged
     {

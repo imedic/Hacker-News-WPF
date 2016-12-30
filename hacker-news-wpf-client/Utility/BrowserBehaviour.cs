@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace hacker_news_wpf_client.Helper_Classes
+namespace hacker_news_wpf_client.Utility
 {
     public class BrowserBehavior
     {

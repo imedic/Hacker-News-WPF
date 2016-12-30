@@ -35,10 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HtmlTextBlock, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlTextBlock.1.0.1\lib\net45\HtmlTextBlock.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="HtmlToXamlConverter, Version=1.0.5727.24510, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlToXamlConverter.1.0.5727.24510\lib\net45\HtmlToXamlConverter.dll</HintPath>
       <Private>True</Private>
@@ -98,18 +94,18 @@
     <Compile Include="Controls\StoryListControl.xaml.cs">
       <DependentUpon>StoryListControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\HtmlToCleanTextConverter.cs" />
     <Compile Include="Converters\InvertBooleanConverter.cs" />
     <Compile Include="Converters\NullToVIsibilityConverter.cs" />
-    <Compile Include="Helper Classes\BrowserBehaviour.cs" />
-    <Compile Include="Helper Classes\HtmlRichTextBoxBehavior.cs" />
-    <Compile Include="Helper Classes\ObservableObject.cs" />
-    <Compile Include="Helper Classes\RelayCommand.cs" />
-    <Compile Include="HtmlTextBlockTest.xaml.cs" />
+    <Compile Include="Utility\BrowserBehaviour.cs" />
+    <Compile Include="Utility\HtmlRichTextBoxBehavior.cs" />
+    <Compile Include="Utility\ObservableObject.cs" />
+    <Compile Include="Utility\RelayCommand.cs" />
     <Compile Include="Intefaces\IPageViewModel.cs" />
     <Compile Include="Model\Comment.cs" />
     <Compile Include="Model\Story.cs" />
-    <Compile Include="Helper Classes\DownloadItem.cs" />
-    <Compile Include="Helper Classes\NotifyClassCompletion.cs" />
+    <Compile Include="Utility\DownloadItem.cs" />
+    <Compile Include="Utility\NotifyClassCompletion.cs" />
     <Compile Include="Services\StoryService.cs" />
     <Compile Include="ViewModels\BestStoriesViewModel.cs" />
     <Compile Include="ViewModels\NewStoriesViewModel.cs" />
@@ -139,10 +135,6 @@
     <Page Include="Controls\StoryListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="HtmlTextBlockTest.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="ShellView.xaml">
       <Generator>MSBuild:Compile</Generator>

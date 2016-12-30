@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.ComponentModel;
 
-namespace hacker_news_wpf_client.Helper_Classes
+namespace hacker_news_wpf_client.Utility
 {
     public abstract class ObservableObject : INotifyPropertyChanged
     {

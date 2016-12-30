@@ -4,22 +4,29 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:hacker_news_wpf_client.Controls"
-             xmlns:helperClasses="clr-namespace:hacker_news_wpf_client.Helper_Classes"
-             xmlns:converters="clr-namespace:hacker_news_wpf_client.Converters"
              xmlns:htmlTextBlock="http://www.quickzip.org/BaseControls"
+             xmlns:utility="clr-namespace:hacker_news_wpf_client.Utility"
+             xmlns:converters="clr-namespace:hacker_news_wpf_client.Converters"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:HtmlToCleanTextConverter x:Key="HtmlToCleanTextConverter"></converters:HtmlToCleanTextConverter>
+    </UserControl.Resources>
     <StackPanel Orientation="Vertical"
                 MaxWidth="900"
                 HorizontalAlignment="Center">
         <Border BorderBrush="#BDBDBD" 
                         BorderThickness="1"  
                         Background="white">
-            <RichTextBox helperClasses:HtmlRichTextBoxBehavior.Text="{Binding Text}"
+            <!--<RichTextBox utility:HtmlRichTextBoxBehavior.Text="{Binding Text}"
                      Background="Transparent"
                      Padding="20"
                      BorderThickness="0"
                      IsHitTestVisible="False"
-                     IsReadOnly="True"/>
+                     IsReadOnly="True"/>-->
+            <TextBlock Text="{Binding Text, Converter={StaticResource HtmlToCleanTextConverter}}"
+                       Padding="20"
+                       TextWrapping="Wrap"></TextBlock>
+            <!--<WebBrowser utility:BrowserBehavior.Html="{Binding Text}"></WebBrowser>-->
         </Border>
         <StackPanel Margin="40 0 0 0" Orientation="Vertical">
             <ItemsControl ItemsSource="{Binding Comments}">

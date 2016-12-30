@@ -6,8 +6,8 @@ using System.Net;
 using System.Runtime.Caching;
 using System.Text;
 using System.Threading.Tasks;
-using hacker_news_wpf_client.Helper_Classes;
 using hacker_news_wpf_client.Model;
+using hacker_news_wpf_client.Utility;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 

@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Windows.Input;
 
-namespace hacker_news_wpf_client.Helper_Classes
+namespace hacker_news_wpf_client.Utility
 {
     /// <summary>
     /// A command whose sole purpose is to 

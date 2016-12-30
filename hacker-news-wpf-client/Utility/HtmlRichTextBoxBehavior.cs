@@ -10,7 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Markup;
 using HTMLConverter;
 
-namespace hacker_news_wpf_client.Helper_Classes
+namespace hacker_news_wpf_client.Utility
 {
     public class HtmlRichTextBoxBehavior : DependencyObject
     {
