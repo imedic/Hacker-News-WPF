@@ -16,7 +16,8 @@
     <StackPanel Orientation="Vertical"
                 MaxWidth="900"
                 HorizontalAlignment="Stretch">
-        <materialDesign:Card Background="{DynamicResource MaterialDesignBackground}">
+        <materialDesign:Card Background="{DynamicResource MaterialDesignBackground}"
+                             Visibility="{Binding Text, Converter= {StaticResource NullToVIsibilityConverter}}">
             <!--<Expander HorizontalAlignment="Stretch"
                     Header="{Binding Author}"
                     IsExpanded="True">-->

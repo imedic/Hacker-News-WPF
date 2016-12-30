@@ -48,7 +48,21 @@
                             BorderBrush="Transparent"
                             FontSize="16"
                             DockPanel.Dock="Top"
-                            HorizontalAlignment="Left">
+                            HorizontalAlignment="Left"
+                            Cursor="Hand">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Foreground" Value="#0D47A1"></Setter>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="False">
+                                        <Setter Property="Background" Value="Red"></Setter>
+                                        <Setter Property="BorderBrush" Value="Red"></Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
                         <TextBlock Text="{Binding Title}"
                                    TextWrapping="Wrap"
                                    HorizontalAlignment="Left"/>
@@ -57,7 +71,6 @@
                         <TextBlock Text="{Binding NumberOfComments, StringFormat='\{0\} comments'}"
                                    FontSize="10">
                         </TextBlock>
-                        <TextBlock Text="Id"></TextBlock>
 
                     </StackPanel>
                 </DockPanel>
@@ -66,8 +79,9 @@
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
                             Grid.Column="2">
-                    <Button Tag="{Binding Url}"
-                            Click="OpenLink"
+                    <Button Command="{Binding DataContext.OpenLinkCommand, 
+                            RelativeSource={RelativeSource AncestorType={x:Type Window}}}" 
+                            CommandParameter="{Binding Url}"
                             Style="{StaticResource MaterialDesignFlatButton}" 
                             ToolTip="Open link in browser"
                             Padding="0"

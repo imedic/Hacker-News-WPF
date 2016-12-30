@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 using hacker_news_wpf_client;
@@ -16,6 +18,7 @@ namespace hacker_news_wpf_client.ViewModels
 
         private ICommand _changePageCommand;
         private ICommand _openFlyoutCommand;
+        private ICommand _openLinkCommand;
 
         private IPageViewModel _currentPageViewModel;
         private List<IPageViewModel> _pageViewModels;
@@ -76,6 +79,27 @@ namespace hacker_news_wpf_client.ViewModels
             FlyoutContent = new StoryItemViewModel(id);
             IsFlyoutOpen = true;
 
+        }
+
+        public ICommand OpenLinkCommand
+        {
+            get
+            {
+                if (_openLinkCommand == null)
+                {
+                    _openLinkCommand = new RelayCommand(
+                        OpenLink,
+                        p => true);
+                }
+                return _openLinkCommand;
+            }
+        }
+
+        private void OpenLink(object p)
+        {
+            var url = p as string;
+
+            if (url != null) Process.Start(url);
         }
 
         public bool IsFlyoutOpen

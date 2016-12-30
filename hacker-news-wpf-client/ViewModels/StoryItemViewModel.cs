@@ -11,10 +11,8 @@ using hacker_news_wpf_client.Utility;
 
 namespace hacker_news_wpf_client.ViewModels
 {
-    public class StoryItemViewModel : ObservableObject, IPageViewModel
+    public class StoryItemViewModel : ObservableObject
     {
-        public string Name => "Story details example";
-
         public NotifyTaskCompletion<Story> Story { get; private set; }
 
         public StoryItemViewModel(int id)

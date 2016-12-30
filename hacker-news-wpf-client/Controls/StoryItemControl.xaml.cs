@@ -25,12 +25,5 @@ namespace hacker_news_wpf_client.Controls
         {
             InitializeComponent();
         }
-
-        private void OpenLink(object sender, RoutedEventArgs e)
-        {
-            var url = ((Button) sender).Tag as string;
-
-            if(url != null) Process.Start(url);
-        }
     }
 }

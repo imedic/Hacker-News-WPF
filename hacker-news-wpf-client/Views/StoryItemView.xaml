@@ -13,18 +13,62 @@
     
     <UserControl.Resources>
         <converters:HtmlToCleanTextConverter x:Key="HtmlToCleanTextConverter"></converters:HtmlToCleanTextConverter>
+        <converters:NullToVIsibilityConverter x:Key="NullToVIsibilityConverter"></converters:NullToVIsibilityConverter>
     </UserControl.Resources>
     
     <Grid HorizontalAlignment="Center">
-        <StackPanel Orientation="Vertical">
-            <materialDesign:Card Background="#F4511E" Foreground="White" Padding="30">
+        <StackPanel Orientation="Vertical" Margin="50 0" HorizontalAlignment="Stretch" MaxWidth="1100">
+            <materialDesign:Card Background="#F4511E" Foreground="White" Padding="30" HorizontalAlignment="Stretch"
+                                 Visibility="{Binding Story.IsSuccessfullyCompleted,
+                                            Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="{Binding Story.Result.Title}"
-                               FontSize="24" />
-                    <TextBlock Text="{Binding Story.Result.StoryText, Converter={StaticResource HtmlToCleanTextConverter}}"></TextBlock>
-                    <TextBlock Text="{Binding Story.Result.Url}"></TextBlock>
+                               FontSize="24" 
+                               TextWrapping="Wrap"/>
+                    <StackPanel Visibility="{Binding Story.Result.Text, Converter={StaticResource NullToVIsibilityConverter}}">
+                        <TextBlock Text="{Binding Story.Result.Text, Converter={StaticResource HtmlToCleanTextConverter}}"
+                               TextWrapping="Wrap"
+                               Margin="0 15"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"
+                                Margin="0 10 0 0">
+                        <Button Command="{Binding DataContext.OpenLinkCommand, 
+                            RelativeSource={RelativeSource AncestorType={x:Type Window}}}" 
+                            CommandParameter="{Binding Story.Result.Url}"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            ToolTip="Open link in browser"
+                            Padding="0"
+                            Width="auto"
+                            Height="18"
+                            Visibility="{Binding Url, Converter={StaticResource NullToVIsibilityConverter}}">
+
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Launch"  Height="16" Width="16" Foreground="White" Margin="0 0 10 0" 
+                                                         VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding Story.Result.Url}"
+                                           Foreground="White"
+                                           FontWeight="Normal" 
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
                 </StackPanel>
             </materialDesign:Card>
+
+            <StackPanel Orientation="Vertical"
+                        Margin="0 20"
+                        Visibility="{Binding Story.IsSuccessfullyCompleted,
+                                            Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TextBlock Text="Comments"
+                           FontSize="18"></TextBlock>
+                <ItemsControl  ItemsSource="{Binding Story.Result.Comments}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <controls:CommentControl Margin="0 30 0 0"></controls:CommentControl>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
 
             <StackPanel Orientation="Vertical"
                     Visibility="{Binding Story.IsNotCompleted,
@@ -40,20 +84,6 @@
                 <Label Content="Loading"
                    HorizontalAlignment="Center"
                    Foreground="#212121"></Label>
-            </StackPanel>
-
-            <StackPanel Orientation="Vertical"
-                    Margin="0 20">
-                <TextBlock Text="Comments"
-                           FontSize="18"></TextBlock>
-                <ItemsControl  ItemsSource="{Binding Story.Result.Comments}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <controls:CommentControl Margin="0 30 0 0"></controls:CommentControl>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-
             </StackPanel>
 
             <!--Error details-->
