@@ -9,6 +9,9 @@ namespace hacker_news_wpf_client.Model
 {
     public class Story
     {
+        [JsonProperty(PropertyName = "objectID")]
+        public int Id { get; set; }
+
         [JsonProperty(PropertyName = "author")]
         public string By { get; set; }
 
@@ -18,12 +21,8 @@ namespace hacker_news_wpf_client.Model
         [JsonProperty(PropertyName = "url")]
         public string Url { get; set; }
 
-
         [JsonProperty(PropertyName = "story_text")]
         public string StoryText;
-
-        [JsonProperty(PropertyName = "id")]
-        public string Id { get; set; }
 
         [JsonProperty(PropertyName = "points")]
         public int Score { get; set; }

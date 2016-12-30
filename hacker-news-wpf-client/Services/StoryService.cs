@@ -19,7 +19,7 @@ namespace hacker_news_wpf_client.Services
 
         public static async Task<Story> GetStory(int id)
         {
-            var storyJson = await DownloadItem.GetJson("http://hn.algolia.com/api/v1/items/8863");
+            var storyJson = await DownloadItem.GetJson("http://hn.algolia.com/api/v1/items/" + id);
             var story = JsonConvert.DeserializeObject<Story>(storyJson);
 
             return story;

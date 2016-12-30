@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:hacker_news_wpf_client.Controls"
              xmlns:helperClasses="clr-namespace:hacker_news_wpf_client.Helper_Classes"
              xmlns:converters="clr-namespace:hacker_news_wpf_client.Converters"
+             xmlns:htmlTextBlock="http://www.quickzip.org/BaseControls"
              mc:Ignorable="d">
     <StackPanel Orientation="Vertical"
                 MaxWidth="900"

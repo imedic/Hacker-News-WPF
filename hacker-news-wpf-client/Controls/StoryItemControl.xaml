@@ -15,6 +15,9 @@
     <StackPanel Orientation="Vertical"
                 HorizontalAlignment="Stretch"
                 MaxWidth="900">
+        <!--<Button Content="Open flyout" Command="{Binding DataContext.OpenFlyoutCommand, 
+                    RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="8863"></Button>-->
+
         <materialDesign:Card Padding="10 20" Margin="5 2" MinHeight="80">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -39,16 +42,30 @@
                 <DockPanel Margin="10 0 0 0"
                            DockPanel.Dock="Left"
                            Grid.Column="1">
-                    <TextBlock Text="{Binding Title}"
+                    <Button Command="{Binding DataContext.OpenFlyoutCommand, 
+                            RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding Id}"
+                            Padding="0"
+                            Foreground="#0D47A1"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            FontSize="16"
+                            DockPanel.Dock="Top"
+                            HorizontalAlignment="Left">
+                        <TextBlock Text="{Binding Title}"
+                                   TextWrapping="Wrap"
+                                   HorizontalAlignment="Left"/>
+                    </Button>
+                    <!--<TextBlock Text="{Binding Title}"
                                FontSize="16"
                                Foreground="#0D47A1"
                                DockPanel.Dock="Top"
                                TextWrapping="Wrap">
-                    </TextBlock>
+                    </TextBlock>-->
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
                         <TextBlock Text="{Binding NumberOfComments, StringFormat='\{0\} comments'}"
                                    FontSize="10">
                         </TextBlock>
+                        <TextBlock Text="Id"></TextBlock>
 
                     </StackPanel>
                 </DockPanel>

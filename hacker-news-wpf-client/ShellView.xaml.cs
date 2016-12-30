@@ -13,13 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using hacker_news_wpf_client.ViewModels;
+using MahApps.Metro.Controls;
 
 namespace hacker_news_wpf_client
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class ShellView : Window
+    public partial class ShellView : MetroWindow
     {
         public ShellView()
         {

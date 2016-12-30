@@ -1,4 +1,4 @@
-﻿<Window x:Class="hacker_news_wpf_client.ShellView"
+﻿<controls:MetroWindow x:Class="hacker_news_wpf_client.ShellView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,6 +8,8 @@
         xmlns:v="clr-namespace:hacker_news_wpf_client.Views"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:intefaces="clr-namespace:hacker_news_wpf_client.Intefaces.hacker_news_wpf_client.Intefaces"
+        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:converters="clr-namespace:hacker_news_wpf_client.Converters"
         mc:Ignorable="d"
         Title="Hacker News" Height="350" Width="525"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -17,9 +19,13 @@
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
+        GlowBrush="{DynamicResource AccentColorBrush}"
         WindowState="Maximized">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+        <converters:InvertBooleanConverter x:Key="InvertBooleanConverter" />
+
 
         <DataTemplate DataType="{x:Type vm:TrendingStoriesViewModel}">
             <v:TrendingStoriesView />
@@ -32,11 +38,18 @@
         <DataTemplate DataType="{x:Type vm:NewStoriesViewModel}">
             <v:NewStoriesView />
         </DataTemplate>
-        
-        <DataTemplate DataType="{x:Type vm:StoryItemViewModel}">
-            <v:StoryItemView></v:StoryItemView>
-        </DataTemplate>
+
     </Window.Resources>
+
+
+    <controls:MetroWindow.Flyouts>
+        <controls:FlyoutsControl>
+            <controls:Flyout Header="Flyout" Position="Right" Width="1100" IsOpen="{Binding IsFlyoutOpen}">
+                <v:StoryItemView DataContext="{Binding FlyoutContent}" />
+            </controls:Flyout>
+        </controls:FlyoutsControl>
+    </controls:MetroWindow.Flyouts>
+
 
     <DockPanel>
         <DockPanel materialDesign:ShadowAssist.ShadowDepth="Depth2"
@@ -93,16 +106,21 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
+
+                <Button Content="Open flyout" Command="{Binding OpenFlyoutCommand}" CommandParameter="8863"></Button>
             </StackPanel>
         </DockPanel>
 
-        <ScrollViewer>
+        <ScrollViewer IsEnabled="{Binding IsFlyoutOpen, Converter={StaticResource InvertBooleanConverter}}">
             <StackPanel Orientation="Vertical"
                         Margin="0 30 0 0">
                 <ContentControl Content="{Binding CurrentPageViewModel}" />
             </StackPanel>
         </ScrollViewer>
     </DockPanel>
-</Window>
+</controls:MetroWindow>
+
+
+
 
 

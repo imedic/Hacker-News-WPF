@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 using hacker_news_wpf_client;
 using hacker_news_wpf_client.Helper_Classes;
 using hacker_news_wpf_client.Intefaces.hacker_news_wpf_client.Intefaces;
@@ -13,9 +15,15 @@ namespace hacker_news_wpf_client.ViewModels
         #region Fields
 
         private ICommand _changePageCommand;
+        private ICommand _openFlyoutCommand;
 
         private IPageViewModel _currentPageViewModel;
         private List<IPageViewModel> _pageViewModels;
+
+        private bool _isFloutOpen = false;
+
+        private StoryItemViewModel _flyoutContent;
+
 
         #endregion
 
@@ -25,7 +33,6 @@ namespace hacker_news_wpf_client.ViewModels
             PageViewModels.Add(new TrendingStoriesViewModel());
             PageViewModels.Add(new BestStoriesViewModel());
             PageViewModels.Add(new NewStoriesViewModel());
-            PageViewModels.Add(new StoryItemViewModel());
 
             // Set starting page
             CurrentPageViewModel = PageViewModels[0];
@@ -45,6 +52,54 @@ namespace hacker_news_wpf_client.ViewModels
                 }
 
                 return _changePageCommand;
+            }
+        }
+
+        public ICommand OpenFlyoutCommand
+        {
+            get
+            {
+                if (_openFlyoutCommand == null)
+                {
+                    _openFlyoutCommand = new RelayCommand(
+                        OpenFlyout,
+                        p => true);
+                }
+
+                return _openFlyoutCommand;
+            }
+        }
+
+        private void OpenFlyout(object p)
+        {
+            var id = (int) p;
+            FlyoutContent = new StoryItemViewModel(id);
+            IsFlyoutOpen = true;
+
+        }
+
+        public bool IsFlyoutOpen
+        {
+            get { return _isFloutOpen; }
+            set
+            {
+                _isFloutOpen = value;
+                RaisePropertyChanged("IsFlyoutOpen");
+            }
+        }
+
+        public StoryItemViewModel FlyoutContent
+        {
+            get
+            {
+                return _flyoutContent;
+            }
+
+            set
+            {
+                _flyoutContent = value;
+                RaisePropertyChanged("FlyoutContent");
+                RaisePropertyChanged("IsFlyoutOpen");
             }
         }
 

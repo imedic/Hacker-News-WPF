@@ -35,12 +35,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HtmlTextBlock, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlTextBlock.1.0.1\lib\net45\HtmlTextBlock.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="HtmlToXamlConverter, Version=1.0.5727.24510, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlToXamlConverter.1.0.5727.24510\lib\net45\HtmlToXamlConverter.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MahApps.Metro, Version=1.2.4.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.2.4.0\lib\net45\MahApps.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.MahApps, Version=0.0.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.MahApps.0.0.8\lib\net45\MaterialDesignThemes.MahApps.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MaterialDesignThemes.Wpf, Version=2.2.1.750, Culture=neutral, processorArchitecture=MSIL">
@@ -55,6 +67,10 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.2.4.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -82,11 +98,13 @@
     <Compile Include="Controls\StoryListControl.xaml.cs">
       <DependentUpon>StoryListControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\InvertBooleanConverter.cs" />
     <Compile Include="Converters\NullToVIsibilityConverter.cs" />
     <Compile Include="Helper Classes\BrowserBehaviour.cs" />
     <Compile Include="Helper Classes\HtmlRichTextBoxBehavior.cs" />
     <Compile Include="Helper Classes\ObservableObject.cs" />
     <Compile Include="Helper Classes\RelayCommand.cs" />
+    <Compile Include="HtmlTextBlockTest.xaml.cs" />
     <Compile Include="Intefaces\IPageViewModel.cs" />
     <Compile Include="Model\Comment.cs" />
     <Compile Include="Model\Story.cs" />
@@ -121,6 +139,10 @@
     <Page Include="Controls\StoryListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HtmlTextBlockTest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="ShellView.xaml">
       <Generator>MSBuild:Compile</Generator>

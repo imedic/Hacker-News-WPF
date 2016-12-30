@@ -25,7 +25,7 @@ namespace hacker_news_wpf_client.Views
         {
             InitializeComponent();
 
-            this.DataContext = new StoryItemViewModel();
+            //this.DataContext = new StoryItemViewModel();
         }
     }
 }
