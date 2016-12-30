@@ -7,35 +7,37 @@
              xmlns:htmlTextBlock="http://www.quickzip.org/BaseControls"
              xmlns:utility="clr-namespace:hacker_news_wpf_client.Utility"
              xmlns:converters="clr-namespace:hacker_news_wpf_client.Converters"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d">
     <UserControl.Resources>
         <converters:HtmlToCleanTextConverter x:Key="HtmlToCleanTextConverter"></converters:HtmlToCleanTextConverter>
+        <converters:NullToVIsibilityConverter x:Key="NullToVIsibilityConverter"></converters:NullToVIsibilityConverter>
     </UserControl.Resources>
     <StackPanel Orientation="Vertical"
                 MaxWidth="900"
-                HorizontalAlignment="Center">
-        <Border BorderBrush="#BDBDBD" 
-                        BorderThickness="1"  
-                        Background="white">
-            <!--<RichTextBox utility:HtmlRichTextBoxBehavior.Text="{Binding Text}"
-                     Background="Transparent"
-                     Padding="20"
-                     BorderThickness="0"
-                     IsHitTestVisible="False"
-                     IsReadOnly="True"/>-->
-            <TextBlock Text="{Binding Text, Converter={StaticResource HtmlToCleanTextConverter}}"
-                       Padding="20"
-                       TextWrapping="Wrap"></TextBlock>
-            <!--<WebBrowser utility:BrowserBehavior.Html="{Binding Text}"></WebBrowser>-->
-        </Border>
-        <StackPanel Margin="40 0 0 0" Orientation="Vertical">
-            <ItemsControl ItemsSource="{Binding Comments}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <local:CommentControl />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </StackPanel>
+                HorizontalAlignment="Stretch">
+        <materialDesign:Card Background="{DynamicResource MaterialDesignBackground}">
+            <!--<Expander HorizontalAlignment="Stretch"
+                    Header="{Binding Author}"
+                    IsExpanded="True">-->
+                <StackPanel Orientation="Vertical"
+                            TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
+                            Margin="24,5,24,16">
+                    <TextBlock Text="{Binding Author}"
+                               FontSize="20"/>
+                    <TextBlock Text="{Binding Text, Converter={StaticResource HtmlToCleanTextConverter}}"
+                               TextWrapping="Wrap"></TextBlock>
+                    <StackPanel Margin="25 20 0 0" Orientation="Vertical">
+                        <ItemsControl ItemsSource="{Binding Comments}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <local:CommentControl />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </StackPanel>
+            <!--</Expander>-->
+        </materialDesign:Card>
     </StackPanel>
 </UserControl>

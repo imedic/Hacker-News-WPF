@@ -21,7 +21,7 @@ namespace hacker_news_wpf_client.Model
         [JsonProperty(PropertyName = "url")]
         public string Url { get; set; }
 
-        [JsonProperty(PropertyName = "story_text")]
+        [JsonProperty(PropertyName = "text")]
         public string StoryText;
 
         [JsonProperty(PropertyName = "points")]

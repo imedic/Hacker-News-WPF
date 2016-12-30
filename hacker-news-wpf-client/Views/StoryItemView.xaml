@@ -8,13 +8,23 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
             xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
-            xmlns:viewModels="clr-namespace:hacker_news_wpf_client.ViewModels">
+            xmlns:viewModels="clr-namespace:hacker_news_wpf_client.ViewModels"
+            xmlns:converters="clr-namespace:hacker_news_wpf_client.Converters">
+    
+    <UserControl.Resources>
+        <converters:HtmlToCleanTextConverter x:Key="HtmlToCleanTextConverter"></converters:HtmlToCleanTextConverter>
+    </UserControl.Resources>
     
     <Grid HorizontalAlignment="Center">
         <StackPanel Orientation="Vertical">
-            <TextBlock Text="Test2"></TextBlock>
-            <TextBlock Text="{Binding Story.Result.Title}"></TextBlock>
-            <TextBlock Text="{Binding Story.Result.Url}"></TextBlock>
+            <materialDesign:Card Background="#F4511E" Foreground="White" Padding="30">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{Binding Story.Result.Title}"
+                               FontSize="24" />
+                    <TextBlock Text="{Binding Story.Result.StoryText, Converter={StaticResource HtmlToCleanTextConverter}}"></TextBlock>
+                    <TextBlock Text="{Binding Story.Result.Url}"></TextBlock>
+                </StackPanel>
+            </materialDesign:Card>
 
             <StackPanel Orientation="Vertical"
                     Visibility="{Binding Story.IsNotCompleted,
@@ -34,6 +44,8 @@
 
             <StackPanel Orientation="Vertical"
                     Margin="0 20">
+                <TextBlock Text="Comments"
+                           FontSize="18"></TextBlock>
                 <ItemsControl  ItemsSource="{Binding Story.Result.Comments}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
@@ -53,3 +65,4 @@
         </StackPanel>
     </Grid>
 </UserControl>
+

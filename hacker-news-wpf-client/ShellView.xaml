@@ -44,8 +44,11 @@
 
     <controls:MetroWindow.Flyouts>
         <controls:FlyoutsControl>
-            <controls:Flyout Header="Flyout" Position="Right" Width="1100" IsOpen="{Binding IsFlyoutOpen}">
-                <v:StoryItemView DataContext="{Binding FlyoutContent}" />
+            <controls:Flyout Header="{Binding FlyoutContent.Story.Result.Title}" Position="Right" Width="1100" IsOpen="{Binding IsFlyoutOpen}"
+                             Background="#EEEEEE">
+                <ScrollViewer>
+                    <v:StoryItemView DataContext="{Binding FlyoutContent}" />
+                </ScrollViewer>
             </controls:Flyout>
         </controls:FlyoutsControl>
     </controls:MetroWindow.Flyouts>
@@ -106,8 +109,6 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-
-                <Button Content="Open flyout" Command="{Binding OpenFlyoutCommand}" CommandParameter="8863"></Button>
             </StackPanel>
         </DockPanel>
 
