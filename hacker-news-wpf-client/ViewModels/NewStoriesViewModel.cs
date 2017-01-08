@@ -19,7 +19,7 @@ namespace hacker_news_wpf_client.ViewModels
         public NewStoriesViewModel()
         {
             NewStories = new NotifyTaskCompletion<List<Story>>(
-                StoryService.GetNewStoriesFromCacheOrApi());
+                HackerNewsService.GetNewStories());
         }
     }
 }

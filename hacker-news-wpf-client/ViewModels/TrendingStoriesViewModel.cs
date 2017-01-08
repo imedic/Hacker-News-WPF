@@ -23,7 +23,7 @@ namespace hacker_news_wpf_client.ViewModels
         public TrendingStoriesViewModel()
         {
             TrendingStories = new NotifyTaskCompletion<List<Story>>(
-                StoryService.GetTrendingStoriesFromCacheOrApi());
+                HackerNewsService.GetTrendingStories());
         }
     }
 }

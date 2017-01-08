@@ -42,10 +42,19 @@
         </StackPanel>
 
         <!--Error details-->
-        <Label Content="{Binding ErrorMessage}" 
-                                Background="Red"
-                                Visibility="{Binding IsFaulted,
+        <materialDesign:Card Width="auto"
+                             MaxWidth="500"
+                             Padding="50"
+                             HorizontalAlignment="Center"
+                             Background="#B71C1C"
+                             Visibility="{Binding IsFaulted,
                                 Converter={StaticResource BooleanToVisibilityConverter},
-                                FallbackValue=Collapsed}"/>
+                                FallbackValue=Collapsed}">
+            <TextBlock Text="{Binding ErrorMessage}"
+                       TextWrapping="Wrap"
+                       Foreground="White"
+                       FontSize="18"
+                       FontWeight="SemiBold"/>
+        </materialDesign:Card>
     </StackPanel>
 </UserControl>

@@ -17,7 +17,7 @@ namespace hacker_news_wpf_client.ViewModels
 
         public StoryItemViewModel(int id)
         {
-            Story = new NotifyTaskCompletion<Story>(StoryService.GetStory(id));
+            Story = new NotifyTaskCompletion<Story>(HackerNewsService.GetStory(id));
 
         }
     }

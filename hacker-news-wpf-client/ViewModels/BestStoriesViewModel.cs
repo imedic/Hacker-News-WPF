@@ -19,7 +19,7 @@ namespace hacker_news_wpf_client.ViewModels
         public BestStoriesViewModel()
         {
             BestStories = new NotifyTaskCompletion<List<Story>>(
-                StoryService.GetBestStoriesFromCacheOrApi());
+                HackerNewsService.GetBestStories());
         }
     }
 }

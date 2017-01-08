@@ -20,7 +20,8 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         GlowBrush="{DynamicResource AccentColorBrush}"
-        WindowState="Maximized">
+        WindowState="Maximized"
+        WindowTitleBrush="#F4511E">       
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
@@ -40,6 +41,21 @@
         </DataTemplate>
 
     </Window.Resources>
+
+    <controls:MetroWindow.TitleTemplate>
+        <DataTemplate>
+            <StackPanel Orientation="Horizontal"
+                        VerticalAlignment="Center">
+                <materialDesign:PackIcon Kind="Hackernews" 
+                                     Width="15" Height="15" 
+                                     VerticalAlignment="Center"
+                                     Foreground="White"
+                                         Margin="10 0"/>
+                <TextBlock Text="Hacker News"/>
+            </StackPanel>
+        </DataTemplate>
+    </controls:MetroWindow.TitleTemplate>
+
 
 
     <controls:MetroWindow.Flyouts>

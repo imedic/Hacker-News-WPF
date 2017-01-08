@@ -101,8 +101,6 @@
     <Compile Include="Converters\HtmlToCleanTextConverter.cs" />
     <Compile Include="Converters\InvertBooleanConverter.cs" />
     <Compile Include="Converters\NullToVIsibilityConverter.cs" />
-    <Compile Include="Utility\BrowserBehaviour.cs" />
-    <Compile Include="Utility\HtmlRichTextBoxBehavior.cs" />
     <Compile Include="Utility\ObservableObject.cs" />
     <Compile Include="Utility\RelayCommand.cs" />
     <Compile Include="Intefaces\IPageViewModel.cs" />
@@ -110,7 +108,7 @@
     <Compile Include="Model\Story.cs" />
     <Compile Include="Utility\DownloadItem.cs" />
     <Compile Include="Utility\NotifyClassCompletion.cs" />
-    <Compile Include="Services\StoryService.cs" />
+    <Compile Include="Services\HackerNewsService.cs" />
     <Compile Include="ViewModels\BestStoriesViewModel.cs" />
     <Compile Include="ViewModels\NewStoriesViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
