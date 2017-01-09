@@ -50,7 +50,7 @@
                                      Width="15" Height="15" 
                                      VerticalAlignment="Center"
                                      Foreground="White"
-                                         Margin="10 0"/>
+                                     Margin="10 0"/>
                 <TextBlock Text="Hacker News"/>
             </StackPanel>
         </DataTemplate>
@@ -61,7 +61,7 @@
     <controls:MetroWindow.Flyouts>
         <controls:FlyoutsControl>
             <controls:Flyout Header="{Binding FlyoutContent.Story.Result.Title}" Position="Right" MaxWidth="1100" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=controls:MetroWindow}, Path=ActualWidth}" IsOpen="{Binding IsFlyoutOpen}"
-                             Background="#EEEEEE">
+                             Background="#F5F5F5">
                 <ScrollViewer>
                     <v:StoryItemView DataContext="{Binding FlyoutContent}" />
                 </ScrollViewer>

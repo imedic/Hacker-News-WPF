@@ -5,14 +5,75 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:hacker_news_wpf_client.Views"
              xmlns:controls="clr-namespace:hacker_news_wpf_client.Controls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converters="clr-namespace:hacker_news_wpf_client.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converters:NullToVIsibilityConverter x:Key="NullToVIsibilityConverter" />
+    </UserControl.Resources>
     <Grid>
         <TextBlock HorizontalAlignment="Center"
                    FontSize="24"
                    FontWeight="Bold"
                    Foreground="#212121">Trending Stories</TextBlock>
 
-        <controls:StoryListControl DataContext="{Binding TrendingStories}"/>
+        <!--<controls:StoryListControl DataContext="{Binding TrendingStories}"/>-->
+        <StackPanel Orientation="Vertical"
+                Margin="0 30 0 0">
+            <!--<Label Content="Loading..." Visibility="{Binding IsNotCompleted,
+                                Converter={StaticResource BooleanToVisibilityConverter}, 
+                                FallbackValue=Collapsed}"/>-->
+
+            <!--Results-->
+            <StackPanel Orientation="Vertical"
+                    Margin="0 20">
+                <ItemsControl ItemsSource="{Binding TrendingStories}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <controls:StoryItemControl />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical"
+                    Visibility="{Binding IsLoading,
+                                Converter={StaticResource BooleanToVisibilityConverter}, 
+                                FallbackValue=Collapsed}">
+                <materialDesign:Card UniformCornerRadius="14" Padding="4"
+                                VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                Margin="0 12 0 5">
+                    <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" 
+                         Value="0"
+                         IsIndeterminate="True"/>
+                </materialDesign:Card>
+                <Label Content="Loading"
+                   HorizontalAlignment="Center"
+                   Foreground="#212121"></Label>
+            </StackPanel>
+
+            <!--Error details-->
+            <materialDesign:Card Width="auto"
+                             MaxWidth="500"
+                             Padding="50"
+                             HorizontalAlignment="Center"
+                             Background="#B71C1C"
+                             Visibility="{Binding ErrorMessage,
+                                Converter={StaticResource NullToVIsibilityConverter}}">
+                <TextBlock Text="{Binding ErrorMessage}"
+                       TextWrapping="Wrap"
+                       Foreground="White"
+                       FontSize="18"
+                       FontWeight="SemiBold"/>
+            </materialDesign:Card>
+
+            <Button Content="Load more"
+                Command="{Binding LoadMoreCommand}"
+                    MaxWidth="200"
+                    HorizontalAlignment="Center"
+                    Margin="0 0 0 20"></Button>
+
+        </StackPanel>
     </Grid>
 </UserControl>

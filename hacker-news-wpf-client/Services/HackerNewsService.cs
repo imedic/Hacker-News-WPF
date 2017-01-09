@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -32,26 +33,26 @@ namespace hacker_news_wpf_client.Services
             return story;
         }
 
-        public static async Task<List<Story>> GetTrendingStories()
+        public static async Task<ObservableCollection<Story>> GetTrendingStories(int pageNumber)
         {
-            List<Story> trendingStories = GetFromCache("trendingStories") as List<Story>;
+            ObservableCollection<Story> trendingStories = GetFromCache("trendingStories" + pageNumber) as ObservableCollection<Story>;
 
             if (trendingStories == null)
             {
-                var trendingStoriesJson = await DownloadItem.GetJson(_base_url + "/search?tags=front_page");
+                var trendingStoriesJson = await DownloadItem.GetJson(_base_url + "/search?tags=front_page&page=" + pageNumber);
 
                 trendingStories = GetStoryList(trendingStoriesJson);
 
-                AddToCache("trendingStories", trendingStories);
+                AddToCache("trendingStories" + pageNumber, trendingStories);
                 
             }
             return trendingStories;           
         }
 
-        public static async Task<List<Story>> GetBestStories()
+
+        public static async Task<ObservableCollection<Story>> GetBestStories()
         {
-            ObjectCache cache = MemoryCache.Default;
-            List<Story> bestStories = GetFromCache("bestStories") as List<Story>;
+            ObservableCollection<Story> bestStories = GetFromCache("bestStories") as ObservableCollection<Story>;
 
             if (bestStories == null)
             {
@@ -65,9 +66,9 @@ namespace hacker_news_wpf_client.Services
             return bestStories;
         }
 
-        public static async Task<List<Story>> GetNewStories()
+        public static async Task<ObservableCollection<Story>> GetNewStories()
         {
-            List<Story> newStories = GetFromCache("newStories") as List<Story>;
+            ObservableCollection<Story> newStories = GetFromCache("newStories") as ObservableCollection<Story>;
 
             if (newStories == null)
             {
@@ -80,19 +81,19 @@ namespace hacker_news_wpf_client.Services
             return newStories;
         }
 
-        private static List<Story> GetStoryList(string storyListJson)
+        private static ObservableCollection<Story> GetStoryList(string storyListJson)
         {JObject stories = JObject.Parse(storyListJson);
 
             IList<JToken> results = stories["hits"].Children().ToList();
 
-            var newStories = new List<Story>();
+            var storyList = new ObservableCollection<Story>();
 
             foreach (JToken result in results)
             {
-                newStories.Add(JsonConvert.DeserializeObject<Story>(result.ToString()));
+                storyList.Add(JsonConvert.DeserializeObject<Story>(result.ToString()));
             }
 
-            return newStories;
+            return storyList;
         }
 
         private static object GetFromCache(string cacheId)

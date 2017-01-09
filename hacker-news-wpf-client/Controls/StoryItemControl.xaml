@@ -34,7 +34,7 @@
                         <TextBlock Text="{Binding Score}" 
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"
-                            Foreground="White"/>          
+                            Foreground="White"/>         
                     </DockPanel>
                 </Border>
                 <DockPanel Margin="10 0 0 0"

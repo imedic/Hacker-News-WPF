@@ -18,14 +18,12 @@
                 HorizontalAlignment="Stretch">
         <materialDesign:Card Background="{DynamicResource MaterialDesignBackground}"
                              Visibility="{Binding Text, Converter= {StaticResource NullToVIsibilityConverter}}">
-            <!--<Expander HorizontalAlignment="Stretch"
-                    Header="{Binding Author}"
-                    IsExpanded="True">-->
-                <StackPanel Orientation="Vertical"
+            <StackPanel Orientation="Vertical"
                             TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
                             Margin="24,5,24,16">
                     <TextBlock Text="{Binding Author}"
-                               FontSize="20"/>
+                               FontSize="18"
+                               Margin="0 10"/>
                     <TextBlock Text="{Binding Text, Converter={StaticResource HtmlToCleanTextConverter}}"
                                TextWrapping="Wrap"></TextBlock>
                     <StackPanel Margin="25 20 0 0" Orientation="Vertical">
@@ -38,7 +36,6 @@
                         </ItemsControl>
                     </StackPanel>
                 </StackPanel>
-            <!--</Expander>-->
         </materialDesign:Card>
     </StackPanel>
 </UserControl>

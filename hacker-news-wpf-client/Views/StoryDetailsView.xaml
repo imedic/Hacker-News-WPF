@@ -10,29 +10,28 @@
             xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
             xmlns:viewModels="clr-namespace:hacker_news_wpf_client.ViewModels"
             xmlns:converters="clr-namespace:hacker_news_wpf_client.Converters">
-    
+
     <UserControl.Resources>
         <converters:HtmlToCleanTextConverter x:Key="HtmlToCleanTextConverter"></converters:HtmlToCleanTextConverter>
         <converters:NullToVIsibilityConverter x:Key="NullToVIsibilityConverter"></converters:NullToVIsibilityConverter>
     </UserControl.Resources>
-    
-    <Grid HorizontalAlignment="Center">
-        <StackPanel Orientation="Vertical" Margin="50 0" HorizontalAlignment="Stretch" MaxWidth="1100">
-            <materialDesign:Card Background="#F4511E" Foreground="White" Padding="30" HorizontalAlignment="Stretch"
+
+    <StackPanel Orientation="Vertical" Margin="50 0" HorizontalAlignment="Stretch" MaxWidth="1100">
+        <materialDesign:Card Background="#F4511E" Foreground="White" Padding="30" HorizontalAlignment="Stretch"
                                  Visibility="{Binding Story.IsSuccessfullyCompleted,
                                             Converter={StaticResource BooleanToVisibilityConverter}}">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="{Binding Story.Result.Title}"
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="{Binding Story.Result.Title}"
                                FontSize="24" 
                                TextWrapping="Wrap"/>
-                    <StackPanel Visibility="{Binding Story.Result.Text, Converter={StaticResource NullToVIsibilityConverter}}">
-                        <TextBlock Text="{Binding Story.Result.Text, Converter={StaticResource HtmlToCleanTextConverter}}"
+                <StackPanel Visibility="{Binding Story.Result.Text, Converter={StaticResource NullToVIsibilityConverter}}">
+                    <TextBlock Text="{Binding Story.Result.Text, Converter={StaticResource HtmlToCleanTextConverter}}"
                                TextWrapping="Wrap"
                                Margin="0 15"></TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"
                                 Margin="0 10 0 0">
-                        <Button Command="{Binding DataContext.OpenLinkCommand, 
+                    <Button Command="{Binding DataContext.OpenLinkCommand, 
                             RelativeSource={RelativeSource AncestorType={x:Type Window}}}" 
                             CommandParameter="{Binding Story.Result.Url}"
                             Style="{StaticResource MaterialDesignFlatButton}" 
@@ -42,57 +41,56 @@
                             Height="18"
                             Visibility="{Binding Url, Converter={StaticResource NullToVIsibilityConverter}}">
 
-                            <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="Launch"  Height="16" Width="16" Foreground="White" Margin="0 0 10 0" 
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Launch"  Height="16" Width="16" Foreground="White" Margin="0 0 10 0" 
                                                          VerticalAlignment="Center"/>
-                                <TextBlock Text="{Binding Story.Result.Url}"
+                            <TextBlock Text="{Binding Story.Result.Url}"
                                            Foreground="White"
                                            FontWeight="Normal" 
                                            VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </Button>
-                    </StackPanel>
+                        </StackPanel>
+                    </Button>
                 </StackPanel>
-            </materialDesign:Card>
+            </StackPanel>
+        </materialDesign:Card>
 
-            <StackPanel Orientation="Vertical"
+        <StackPanel Orientation="Vertical"
                         Margin="0 20"
                         Visibility="{Binding Story.IsSuccessfullyCompleted,
                                             Converter={StaticResource BooleanToVisibilityConverter}}">
-                <TextBlock Text="Comments"
+            <TextBlock Text="Comments"
                            FontSize="18"></TextBlock>
-                <ItemsControl  ItemsSource="{Binding Story.Result.Comments}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <controls:CommentControl Margin="0 30 0 0"></controls:CommentControl>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </StackPanel>
+            <ItemsControl  ItemsSource="{Binding Story.Result.Comments}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <controls:CommentControl Margin="0 25 0 0"></controls:CommentControl>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
 
-            <StackPanel Orientation="Vertical"
+        <StackPanel Orientation="Vertical"
                     Visibility="{Binding Story.IsNotCompleted,
                                 Converter={StaticResource BooleanToVisibilityConverter}, 
                                 FallbackValue=Collapsed}">
-                <materialDesign:Card UniformCornerRadius="14" Padding="4"
+            <materialDesign:Card UniformCornerRadius="14" Padding="4"
                                 VerticalAlignment="Center" HorizontalAlignment="Center" 
                                 Margin="0 12 0 5">
-                    <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" 
+                <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" 
                          Value="0"
                          IsIndeterminate="True"/>
-                </materialDesign:Card>
-                <Label Content="Loading"
+            </materialDesign:Card>
+            <Label Content="Loading"
                    HorizontalAlignment="Center"
                    Foreground="#212121"></Label>
-            </StackPanel>
+        </StackPanel>
 
-            <!--Error details-->
-            <Label Content="{Binding Story.ErrorMessage}" 
+        <!--Error details-->
+        <Label Content="{Binding Story.ErrorMessage}" 
                                 Background="Red"
                                 Visibility="{Binding IsFaulted,
                                 Converter={StaticResource BooleanToVisibilityConverter},
                                 FallbackValue=Collapsed}"/>
-        </StackPanel>
-    </Grid>
+    </StackPanel>
 </UserControl>
 
