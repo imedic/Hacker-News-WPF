@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight;
 using Newtonsoft.Json;
 
 namespace hacker_news_wpf_client.Model
@@ -30,6 +31,6 @@ namespace hacker_news_wpf_client.Model
         public List<Comment> Comments { get; set; }
 
         [JsonProperty(PropertyName = "num_comments")]
-        public string NumberOfComments { get; set; }
+        public int? NumberOfComments { get; set; }
     }
 }

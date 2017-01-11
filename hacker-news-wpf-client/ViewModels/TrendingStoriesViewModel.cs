@@ -22,18 +22,6 @@ namespace hacker_news_wpf_client.ViewModels
     {
         public string Name => "Trending";
 
-        public TrendingStoriesViewModel()
-        {
-            //TrendingStories = new NotifyTaskCompletion<List<Story>>(
-            //    HackerNewsService.GetTrendingStories());
-
-            LoadTrendingStories();
-
-            LoadMoreCommand = new RelayCommand(LoadMore);
-        }
-
-        //public NotifyTaskCompletion<List<Story>> TrendingStories { get; private set; }
-
         private int _pageCounter = 0;
 
         private ObservableCollection<Story> _trendingStories;
@@ -83,12 +71,14 @@ namespace hacker_news_wpf_client.ViewModels
             {
                 ErrorMessage = null;
                 IsLoading = true;
-                var test = new ObservableCollection<Story>();
-                test = await HackerNewsService.GetTrendingStories(_pageCounter);
+                var temp = await HackerNewsService.GetTrendingStories(_pageCounter);
 
-                foreach (var story in test)
+                if (temp != null)
                 {
-                    TrendingStories.Add(story);
+                    foreach (var story in temp)
+                    {
+                        TrendingStories.Add(story);
+                    }
                 }
             }
             catch (Exception e)
@@ -101,7 +91,6 @@ namespace hacker_news_wpf_client.ViewModels
                 _pageCounter++;
             }
         }
-
 
         private async void LoadTrendingStories()
         {
@@ -119,6 +108,13 @@ namespace hacker_news_wpf_client.ViewModels
                 IsLoading = false;
                 _pageCounter++;
             }
+        }
+
+        public TrendingStoriesViewModel()
+        {
+            LoadTrendingStories();
+
+            LoadMoreCommand = new RelayCommand(LoadMore);
         }
     }
 }

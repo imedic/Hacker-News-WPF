@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="hacker_news_wpf_client.Controls.ErrorControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:hacker_news_wpf_client.Controls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converters="clr-namespace:hacker_news_wpf_client.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converters:NullToVisibilityConverter x:Key="NullToVIsibilityConverter" />
+    </UserControl.Resources>
+    <StackPanel Orientation="Vertical">
+        <materialDesign:Card Width="auto"
+                             MaxWidth="500"
+                             Padding="50"
+                             HorizontalAlignment="Center"
+                             Background="#B71C1C"
+                             Visibility="{Binding ErrorMessage,
+                                Converter={StaticResource NullToVIsibilityConverter}}">
+            <TextBlock Text="{Binding ErrorMessage}"
+                       TextWrapping="Wrap"
+                       Foreground="White"
+                       FontSize="18"
+                       FontWeight="SemiBold"/>
+        </materialDesign:Card>
+    </StackPanel>
+</UserControl>

@@ -16,13 +16,23 @@ using System.Windows.Shapes;
 namespace hacker_news_wpf_client.Controls
 {
     /// <summary>
-    /// Interaction logic for StoryListControl.xaml
+    /// Interaction logic for LoadingIndicatorControl.xaml
     /// </summary>
-    public partial class StoryListControl : UserControl
+    public partial class LoadingIndicatorControl : UserControl
     {
-        public StoryListControl()
+        public LoadingIndicatorControl()
         {
             InitializeComponent();
         }
+
+        public bool IsLoading
+        {
+            get { return (bool) GetValue(IsLoadingProperty); }
+            set { SetValue(IsLoadingProperty, value);}
+        }
+
+        public static readonly DependencyProperty IsLoadingProperty =
+            DependencyProperty.Register("IsLoading", typeof(bool), typeof(LoadingIndicatorControl));
+
     }
 }

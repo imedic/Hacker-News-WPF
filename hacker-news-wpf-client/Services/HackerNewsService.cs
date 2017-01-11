@@ -50,33 +50,33 @@ namespace hacker_news_wpf_client.Services
         }
 
 
-        public static async Task<ObservableCollection<Story>> GetBestStories()
+        public static async Task<ObservableCollection<Story>> GetBestStories(int pageNumber)
         {
-            ObservableCollection<Story> bestStories = GetFromCache("bestStories") as ObservableCollection<Story>;
+            ObservableCollection<Story> bestStories = GetFromCache("bestStories" + pageNumber) as ObservableCollection<Story>;
 
             if (bestStories == null)
             {
-                var bestStoriesJson = await DownloadItem.GetJson("http://hn.algolia.com/api/v1/search?tags=story");
+                var bestStoriesJson = await DownloadItem.GetJson("http://hn.algolia.com/api/v1/search?tags=story&page=" + pageNumber);
 
                 bestStories = GetStoryList(bestStoriesJson);
 
-                AddToCache("bestStories", bestStories);
+                AddToCache("bestStories" + pageNumber, bestStories);
 
             }
             return bestStories;
         }
 
-        public static async Task<ObservableCollection<Story>> GetNewStories()
+        public static async Task<ObservableCollection<Story>> GetNewStories(int pageNumber)
         {
-            ObservableCollection<Story> newStories = GetFromCache("newStories") as ObservableCollection<Story>;
+            ObservableCollection<Story> newStories = GetFromCache("newStories" + pageNumber) as ObservableCollection<Story>;
 
             if (newStories == null)
             {
-                var newStoriesJson = await DownloadItem.GetJson("http://hn.algolia.com/api/v1/search_by_date?tags=story");
+                var newStoriesJson = await DownloadItem.GetJson("http://hn.algolia.com/api/v1/search_by_date?tags=story&page=" + pageNumber);
 
                 newStories = GetStoryList(newStoriesJson);
 
-                AddToCache("newStories", newStories);
+                AddToCache("newStories" + pageNumber, newStories);
             }
             return newStories;
         }

@@ -108,20 +108,23 @@
     <Compile Include="Controls\CommentControl.xaml.cs">
       <DependentUpon>CommentControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ErrorControl.xaml.cs">
+      <DependentUpon>ErrorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LoadingIndicatorControl.xaml.cs">
+      <DependentUpon>LoadingIndicatorControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\StoryItemControl.xaml.cs">
       <DependentUpon>StoryItemControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\StoryListControl.xaml.cs">
-      <DependentUpon>StoryListControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Converters\HtmlToCleanTextConverter.cs" />
     <Compile Include="Converters\InvertBooleanConverter.cs" />
+    <Compile Include="Converters\NullOrEmptyToVisibilityConverter.cs" />
     <Compile Include="Converters\NullToVIsibilityConverter.cs" />
     <Compile Include="Intefaces\IPageViewModel.cs" />
     <Compile Include="Model\Comment.cs" />
     <Compile Include="Model\Story.cs" />
     <Compile Include="Utility\DownloadItem.cs" />
-    <Compile Include="Utility\NotifyClassCompletion.cs" />
     <Compile Include="Services\HackerNewsService.cs" />
     <Compile Include="ViewModels\BestStoriesViewModel.cs" />
     <Compile Include="ViewModels\NewStoriesViewModel.cs" />
@@ -144,11 +147,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\StoryItemControl.xaml">
+    <Page Include="Controls\ErrorControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\StoryListControl.xaml">
+    <Page Include="Controls\LoadingIndicatorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\StoryItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

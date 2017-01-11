@@ -12,6 +12,34 @@
                    FontSize="24"
                    FontWeight="Bold"
                    Foreground="#212121">Best stories</TextBlock>
-        <controls:StoryListControl DataContext="{Binding BestStories}"/>
+        <StackPanel Orientation="Vertical"
+                Margin="0 30 0 0">
+
+
+            <!--Best stories-->
+            <StackPanel Orientation="Vertical"
+                    Margin="0 20">
+                <ItemsControl ItemsSource="{Binding BestStories}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <controls:StoryItemControl />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+
+            <!--Loading indicator-->
+            <controls:LoadingIndicatorControl IsLoading="{Binding IsLoading}"></controls:LoadingIndicatorControl>
+
+            <!--Error indicator-->
+            <controls:ErrorControl ErrorMessage="{Binding ErrorMessage}"></controls:ErrorControl>
+
+            <Button Content="Load more"
+                    Command="{Binding LoadMoreCommand}"
+                    MaxWidth="200"
+                    HorizontalAlignment="Center"
+                    Margin="0 0 0 20" />
+
+        </StackPanel>
     </Grid>
 </UserControl>

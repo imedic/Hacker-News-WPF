@@ -9,11 +9,11 @@ using System.Windows.Data;
 
 namespace hacker_news_wpf_client.Converters
 {
-    public class NullToVisibilityConverter : IValueConverter
+    class NullOrEmptyToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value == null ? Visibility.Collapsed : Visibility.Visible;
+            return string.IsNullOrEmpty(value as string) ? Visibility.Collapsed : Visibility.Visible;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -8,9 +8,9 @@
              xmlns:converters="clr-namespace:hacker_news_wpf_client.Converters"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d">
-    
+
     <UserControl.Resources>
-        <converters:NullToVIsibilityConverter x:Key="NullToVIsibilityConverter"></converters:NullToVIsibilityConverter>
+        <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter"></converters:NullToVisibilityConverter>
     </UserControl.Resources>
     <StackPanel Orientation="Vertical"
                 HorizontalAlignment="Stretch"
@@ -34,39 +34,37 @@
                         <TextBlock Text="{Binding Score}" 
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"
-                            Foreground="White"/>         
+                            Foreground="White"/>
                     </DockPanel>
                 </Border>
                 <DockPanel Margin="10 0 0 0"
                            DockPanel.Dock="Left"
                            Grid.Column="1">
-                    <Button Command="{Binding DataContext.OpenFlyoutCommand, 
-                            RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding Id}"
-                            Padding="0"
-                            Foreground="#0D47A1"
-                            Background="Transparent"
-                            BorderBrush="Transparent"
-                            FontSize="16"
-                            DockPanel.Dock="Top"
-                            HorizontalAlignment="Left"
-                            Cursor="Hand">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Style.Triggers>
-                                    <Trigger Property="IsEnabled" Value="False">
-                                        <Setter Property="Foreground" Value="#0D47A1"></Setter>
-                                    </Trigger>
-                                    <Trigger Property="IsMouseOver" Value="False">
-                                        <Setter Property="Background" Value="Red"></Setter>
-                                        <Setter Property="BorderBrush" Value="Red"></Setter>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                        <TextBlock Text="{Binding Title}"
-                                   TextWrapping="Wrap"
-                                   HorizontalAlignment="Left"/>
-                    </Button>
+                    <StackPanel Orientation="Vertical"></StackPanel>
+                    <TextBlock DockPanel.Dock="Top">
+                        <Hyperlink Command="{Binding DataContext.OpenFlyoutCommand, 
+                                   RelativeSource={RelativeSource AncestorType={x:Type Window}}}" 
+                                   CommandParameter="{Binding Id}">
+                            <Hyperlink.Style>
+                                <Style TargetType="Hyperlink">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="#00217B"></Setter>
+                                        </Trigger>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter Property="Foreground" Value="#0D47A1"></Setter>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                    <Setter Property="TextBlock.TextDecorations" Value="{x:Null}" />
+                                    <Setter Property="Foreground" Value="#0D47A1"></Setter>
+                                    <Setter Property="FontSize" Value="16"></Setter>
+                                </Style>
+                            </Hyperlink.Style>
+
+                            <TextBlock Text="{Binding Title}"
+                                        TextWrapping="Wrap"/>
+                        </Hyperlink>
+                    </TextBlock>
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
                         <TextBlock Text="{Binding NumberOfComments, StringFormat='\{0\} comments'}"
                                    FontSize="10">
@@ -85,7 +83,7 @@
                             Style="{StaticResource MaterialDesignFlatButton}" 
                             ToolTip="Open link in browser"
                             Padding="0"
-                            Visibility="{Binding Url, Converter={StaticResource NullToVIsibilityConverter}}">
+                            Visibility="{Binding Url, Converter={StaticResource NullToVisibilityConverter}}">
                         <materialDesign:PackIcon Kind="Launch" Height="24" Width="24" Foreground="#FF7043" />
                     </Button>
                 </StackPanel>

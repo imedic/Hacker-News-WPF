@@ -16,7 +16,7 @@ namespace hacker_news_wpf_client.Converters
         {
             var text = value as string;
 
-            if (text == null) return null;
+            if (string.IsNullOrEmpty(text)) return null;
                     
             var cleanText = "";
             HtmlDocument doc = new HtmlDocument();

@@ -11,7 +11,7 @@
              mc:Ignorable="d">
     <UserControl.Resources>
         <converters:HtmlToCleanTextConverter x:Key="HtmlToCleanTextConverter"></converters:HtmlToCleanTextConverter>
-        <converters:NullToVIsibilityConverter x:Key="NullToVIsibilityConverter"></converters:NullToVIsibilityConverter>
+        <converters:NullToVisibilityConverter x:Key="NullToVIsibilityConverter"></converters:NullToVisibilityConverter>
     </UserControl.Resources>
     <StackPanel Orientation="Vertical"
                 MaxWidth="900"
