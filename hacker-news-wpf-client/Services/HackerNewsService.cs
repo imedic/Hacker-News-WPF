@@ -56,7 +56,7 @@ namespace hacker_news_wpf_client.Services
 
             if (bestStories == null)
             {
-                var bestStoriesJson = await DownloadItem.GetJson("http://hn.algolia.com/api/v1/search?tags=story&page=" + pageNumber);
+                var bestStoriesJson = await DownloadItem.GetJson(_base_url + "/search?tags=story&page=" + pageNumber);
 
                 bestStories = GetStoryList(bestStoriesJson);
 
@@ -72,7 +72,7 @@ namespace hacker_news_wpf_client.Services
 
             if (newStories == null)
             {
-                var newStoriesJson = await DownloadItem.GetJson("http://hn.algolia.com/api/v1/search_by_date?tags=story&page=" + pageNumber);
+                var newStoriesJson = await DownloadItem.GetJson(_base_url + "/search_by_date?tags=story&page=" + pageNumber);
 
                 newStories = GetStoryList(newStoriesJson);
 
